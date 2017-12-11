@@ -7,25 +7,10 @@
 	background-image: url(http://www.vancitybuzz.com/wp-content/uploads/2015/11/vancouver-sunrise-984x500.jpg);
 }
 
-/* Carousel Fade Effect */
-.carousel.carousel-fade .item {
-	-webkit-transition: opacity 1s linear;
-	-moz-transition: opacity 1s linear;
-	-ms-transition: opacity 1s linear;
-	-o-transition: opacity 1s linear;
-	transition: opacity 1s linear;
-	opacity: .5;
-}
 .carousel.carousel-fade .active.item {
 	opacity: 1;
 }
-.carousel.carousel-fade .active.left,
-.carousel.carousel-fade .active.right {
-	left: 0;
-	z-index: 2;
-	opacity: 0;
-	filter: alpha(opacity=0);
-}
+
 /* Carousel Overlay */
 .carousel-overlay {
 	position: absolute;
