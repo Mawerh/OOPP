@@ -1,0 +1,73 @@
+.slide1 {
+	min-height: 560px; /* Must have a height or min-height set due to use of background images */
+	background-size: cover;
+	background-position: center center;
+}
+.slide1 {
+	background-image: url(http://www.vancitybuzz.com/wp-content/uploads/2015/11/vancouver-sunrise-984x500.jpg);
+}
+
+/* Carousel Fade Effect */
+.carousel.carousel-fade .item {
+	-webkit-transition: opacity 1s linear;
+	-moz-transition: opacity 1s linear;
+	-ms-transition: opacity 1s linear;
+	-o-transition: opacity 1s linear;
+	transition: opacity 1s linear;
+	opacity: .5;
+}
+.carousel.carousel-fade .active.item {
+	opacity: 1;
+}
+.carousel.carousel-fade .active.left,
+.carousel.carousel-fade .active.right {
+	left: 0;
+	z-index: 2;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+/* Carousel Overlay */
+.carousel-overlay {
+	position: absolute;
+	bottom: 100px;
+	right: 0;
+	left: 0;
+}
+
+/****************************/
+/*                          */
+/*Styles below just for Demo*/
+/*                          */
+/****************************/
+
+.carousel-overlay {
+	color: white;
+	text-shadow: 1px 1px 1px rgba(0,0,0,.75);
+}
+.carousel-overlay h1 {
+    font-size: 3.5em;
+}
+.carousel-overlay .btn {
+	border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 4px solid #398439;
+    border-radius: 6px;
+}
+.carousel-overlay .btn-lg {
+    font-size: 1.75em;
+    padding: 10px 30px;
+}
+.circles {
+	margin-top: 20px;
+    background-color: #398439;
+    color: #fff;
+    border-radius: 50%;
+    line-height: 3em;
+    width: 3em;
+    height: 3em;
+}
+.featurette-image {
+    display: block;
+    margin: auto;
+}
