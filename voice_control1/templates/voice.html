@@ -1,6 +1,88 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <div class="container">
-    <p>Joey is super lazy.</p>
-    </div>
+    <div id="particles-js">
+	<div class="container">
+
+
+	<!--buttons-->
+		<h1 class="neon" data-text="Vision">Vision</h1>
+		<button id="hi" type="button" class="btn btn-lg btn-outline-info">Voice command</button>
+		<button type="button" class="btn btn-lg btn-outline-info" data-toggle="modal" data-target="#commands">Lists of Commands</button>
+		<button type="button" class="btn btn-lg btn-outline-info" data-toggle="modal" data-target="#newcommands" data-whatever="@mdo">Input of commands</button>
+	</div>
+
+
+	<!--dotted animation-->
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+
+<!-- Modal for lists of commands-->
+		<div class="modal fade" id="commands" tabindex="-1" role="dialog" aria-labelledby="commands" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="commands">Lists of commands</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body">
+				<li><code>Turn on</code></li>
+				<li><code>What is your name</code></li>
+				<li><code>Where is</code></li>
+				<li><code>What time is it</code></li>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+
+
+<!--Modal for adding new commands-->
+		<div class="modal fade" id="newcommands" tabindex="-1" role="dialog" aria-labelledby="newcommands" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="newcommands">New command</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">&times;</span>
+				</button>
+			  </div>
+			  <div class="modal-body">
+				<form>
+				  <div class="form-group">
+					<label for="recipient-name" class="form-control-label">Name:</label>
+					<input type="text" class="form-control" id="recipient-name">
+				  </div>
+				  <div class="form-group">
+					<label for="message-text" class="form-control-label">Call name:</label>
+					<textarea class="form-control" id="message-text"></textarea>
+				  </div>
+				</form>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-success">Add</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	</div>
+    <!--script-->
+    <script src={{ url_for('static', filename="js/particles.min.js")}}></script>
+    <script src={{ url_for('static', filename="js/app.js")}}></script>
+
 {% endblock %}
+
+    <!--<div class="container">
+        <a href="{{ url_for('call_function') }}" class="btn btn-info">Voice</a>
+    </div>-->
