@@ -26,8 +26,7 @@ def call_function():
 #mp3 = MP3('sound.mp3')
 #mp3.delete()
 
-#def play():
-    #playsound('C:\\Users\\Ho Joey\\Documents\\GitHub\\OOPP\\voice_control1\\sound.mp3')
+
 
 
 if __name__ == '__main__':
