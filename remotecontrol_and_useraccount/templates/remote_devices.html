@@ -26,11 +26,19 @@
                                         <td>
                                             {% for device_type, device in device_dict %}
                                                 {% if device_type == type and device_name_dict[device_type][i] != NULL %}
-                                                    <a href="#" class="button_device btn btn-outline-primary">{{ device_name_dict[device_type][i] }}</a>
                                                     <label class="switch button_device_power">
                                                       <input type="checkbox" data-device-switch="{{ device_name_dict[device_type][i] }}">
                                                       <span class="slider round"></span>
                                                     </label>
+
+                                                    <div class="device_dropdown">
+                                                        <button type="button" class="button_device btn btn-outline-primary">{{ device_name_dict[device_type][i] }}</button>
+                                                        <div class="device_dropdown_content" align="center">
+                                                            <button type="button" class="btn btn-danger" id="button_device_info" onclick="removeDevice('{{ device_name_dict[device_type][i] }}')">Delete</button>
+                                                            <button type="button" class="btn btn-warning" id="button_device_remove">Info</button>
+                                                            <button type="button" class="btn btn-info" id="button_device_interface">Remote Interface</button>
+                                                        </div>
+                                                    </div>
                                                 {% endif %}
                                             {% endfor %}
                                         </td>
@@ -126,23 +134,6 @@
                     device_switch.prop("checked", true);
                 {% endif %}
             {% endfor %}
-
-            $('.button_device_power input').change(function() {
-                var device = $(this).attr('data-device-switch');
-
-                if (this.checked) {
-                    $.post('/remote/power', {
-                        'name': device,
-                        'power': 'on'
-                    });
-                }
-                else {
-                    $.post('/remote/power', {
-                        'name': device,
-                        'power': 'off'
-                    });
-                }
-            });
         });
     </script>
 {% endblock %}

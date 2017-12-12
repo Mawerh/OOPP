@@ -7,7 +7,7 @@ body {
 }
 
 .error-message {
-	color: #db4437;
+	color: crimson;
 }
 
 #button_login {
@@ -75,6 +75,7 @@ body {
     left: -3%;
 }
 
+/* Toggle checkbox */
 .switch {
     position: relative;
     display: inline-block;
@@ -128,11 +129,12 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-.form-group {
+/* Log in/sign up form style */
+.form-content .form-group {
     margin-bottom: 20px;
 }
 
-.form-group label {
+.form-content label {
     display: block;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
@@ -140,7 +142,7 @@ input:checked + .slider:before {
     margin-bottom: 5px;
 }
 
-.form-group input {
+.form-content .form-group input {
     border: none;
     border-bottom: 2px solid #4285f4;
     background-color: transparent;
@@ -150,16 +152,15 @@ input:checked + .slider:before {
     width: 100%;
 }
 
-.form-group input:focus {
+.form-content input:focus {
     outline: 0;
 }
 
-.form-group .error-message {
+.form-content .error-message {
     margin: 10px 0;
-    color: crimson;
 }
 
-.form-group .error-message + input {
+.form-content .error-message + input {
     border-bottom: 2px solid crimson;
 }
 
@@ -189,4 +190,26 @@ input:checked + .slider:before {
 .form-content .btn {
     width: 100%;
     margin-top: 30px;
+}
+
+/* Remote device dropdown menu */
+.device_dropdown_content {
+    display: none;
+    background-color: darkgray;
+    width: 70%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 10px 0 5px 0;
+}
+
+#button_device_info {
+    margin-right: 6px;
+}
+
+#button_device_remove {
+    margin-left: 6px;
+}
+
+#button_device_interface {
+    margin-top: 5px;
 }
