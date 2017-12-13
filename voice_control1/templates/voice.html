@@ -1,15 +1,15 @@
 {% extends 'layout.html' %}
 {% block content %}
+
     <div id="particles-js">
-	<div class="container">
+	<!--<div class="container">-->
 
 
 	<!--buttons-->
 		<h1 class="neon" data-text="Vision">Vision</h1>
-		<button id="hi" type="button" class="btn btn-lg btn-outline-info">Voice command</button>
-		<button type="button" class="btn btn-lg btn-outline-info" data-toggle="modal" data-target="#commands">Lists of Commands</button>
-		<button type="button" class="btn btn-lg btn-outline-info" data-toggle="modal" data-target="#newcommands" data-whatever="@mdo">Input of commands</button>
-	</div>
+		<a href="{{ url_for('call_function') }}"><img src="http://icons.iconarchive.com/icons/blackvariant/button-ui-requests-15/512/Microphone-icon.png" class="micro"></a>
+        <button type="button" id = "lc" class="btn btn-lg btn-outline-info" data-toggle="modal" data-target="#commands"><h4>Lists of Commands</h4></button>
+        <button type="button" id = "nlc" class="btn btn-lg btn-outline-info" data-toggle="modal" data-target="#newcommands" data-whatever="@mdo"><h4>Input of commands</h4></button>-->
 
 
 	<!--dotted animation-->
@@ -76,7 +76,10 @@
 			</div>
 		  </div>
 		</div>
-	</div>
+    </div>
+
+
+	<!--</div>-->
     <!--script-->
     <script src={{ url_for('static', filename="js/particles.min.js")}}></script>
     <script src={{ url_for('static', filename="js/app.js")}}></script>
