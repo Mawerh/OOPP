@@ -113,49 +113,23 @@
 </div>
 <!-- .carousel -->
 <!--end bg-carousel-->
-
-<!--The rest of your page content below-->
-<div class="container">
-  <!-- Example row of columns -->
-  <div class="row text-center">
-    <div class="col-md-4">
-      <div class="fa fa-paw fa-3x circles"></div>
-      <h2>Weather</h2>
-        <p>For the weather, you can choose which type of weather you would want your windows to automatically close or stay open</p>
-      <p><a class="btn btn-default" href="http://www.weather.gov.sg/weather-forecast-2hrnowcast-2/" role="button">See the weather in real time »</a></p>
-    </div>
-    <div class="col-md-4">
-      <div class="fa fa-heart fa-3x circles"></div>
-      <h2>Temperature</h2>
-      <p>For the temperature, you can choose when your windows will open or close when your house is too hot or cold.</p>
-      <p><a class="btn btn-default" href="http://www.weather.gov.sg/home/" role="button">See the temperature in real time »</a></p>
-    </div>
-    <div class="col-md-4">
-      <div class="fa fa-book fa-3x circles"></div>
-      <h2>PSI</h2>
-      <p>For the PSI, you can choose when your windows will close when the PSI raises to dangerous levels.</p>
-      <p><a class="btn btn-default" href="http://www.haze.gov.sg/" role="button">See the PSI in real time »</a></p>
-    </div>
-  </div>
-
   <!-- START THE FEATURETTES -->
 
   <hr>
-
-  <div class="row">
-    <div class="col-md-7">
-      <h2 class="featurette-heading">Weather <span class="text-muted">Choose when you want your windows open/close depending on the weather.</span></h2>
-      <h2 class="lead">Current Weather: {{ weath }}.</h2>
-        <h2 class="lead">Current Weather Description: {{descrip}}. </h2>
-        <h2 class="lead">Current Wind Speed: {{ windspd }} knots .</h2>
-
-    </div>
+<div class="container">
+  <!-- Example row of columns -->
+   <div class="row">
+       <div class="col-md-7">
+           <h2 class="featurette-heading">Weather <span class="text-muted">Choose when you want your windows open/close depending on the weather.</span></h2>
+           <h2 class="lead">Current Weather: {{ weath }}.</h2>
+           <h2 class="lead">Current Weather Description: {{descrip}}. </h2>
+           <h2 class="lead">Current Wind Speed: {{ windspd }} knots .</h2>
+       </div>
     <div class="col-md-5 text-center">
-      <img src="http://placehold.it/350/398439/fff&amp;text=Image+Holder" alt="placeholder" class="featurette-image img-responsive">
+      <img src="{{ url_for('static', filename='img/partlycloudy.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
     </div>
-  </div>
-
-  <hr>
+   </div>
+    <hr>
 
   <div class="row">
     <div class="col-md-7 col-md-push-5">
@@ -164,11 +138,10 @@
         <h2 class="lead">Current Humidity: {{ humid }}.</h2>
     </div>
     <div class="col-md-5 col-md-pull-7 text-center">
-      <img src="http://placehold.it/350/398439/fff&amp;text=Image+Holder" alt="placeholder" class="featurette-image img-responsive">
+      <img src="{{ url_for('static', filename='img/temphigh.gif') }}" class="featurette-image img-responsive" height ="200" width="200">
     </div>
   </div>
-
-  <hr>
+    <hr>
 
   <div class="row">
     <div class="col-md-7">
@@ -176,20 +149,22 @@
       <h2 class="lead">Current PSI: {{ psi }}.</h2>
     </div>
     <div class="col-md-5 text-center">
-      <img src="http://placehold.it/350/398439/fff&amp;text=Image+Holder" alt="placeholder" class="featurette-image img-responsive">
+      <img src="{{ url_for('static', filename='img/haze.gif') }}" class="featurette-image img-responsive">
     </div>
   </div>
   <!-- /END THE FEATURETTES -->
 </div>
+
 <hr>
 
 <!-- FOOTER -->
 <footer class="container-fluid">
-	<center>
+
 	<p class="pull-right"><a href="#">Back to top</a></p>
 	<p>© 2017 Copyrighted by John· <a href="#">Privacy</a> · <a href="#">Terms</a></p>
-	</center>
+
 </footer>
+
 
 </body>
 </html>
