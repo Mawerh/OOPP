@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <title>Sign up</title>
+
+    <img src="{{ url_for('static', filename='img/login_signup_bg.jpg') }}" class="background">
+
+    <main class="container">
+        <div class="form-content text-light">
+            <h2>Create an account</h2>
+
+            <form method="POST" action="/signup">
+                {{ signupform.hidden_tag() }}
+
+                <div class="form-group">
+                    {{ signupform.first_name.label }}
+
+                    {% if signupform.first_name.errors %}
+                        {% for error in signupform.first_name.errors %}
+                            <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+
+                    {{ signupform.first_name }}
+                </div>
+
+                <div class="form-group">
+                    {{ signupform.last_name.label }}
+
+                    {% if signupform.last_name.errors %}
+                        {% for error in signupform.last_name.errors %}
+                            <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+
+                    {{ signupform.last_name }}
+                </div>
+
+                <div class="form-group">
+                    {{ signupform.email.label }}
+
+                    {% if signupform.email.errors %}
+                        {% for error in signupform.email.errors %}
+                            <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+
+                    {{ signupform.email }}
+                </div>
+
+                <div class="form-group">
+                    {{ signupform.password.label }}
+
+                    {% if signupform.password.errors %}
+                        {% for error in signupform.password.errors %}
+                            <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+
+                    {{ signupform.password }}
+                </div>
+
+                {{ signupform.submit(class='btn btn-primary') }}
+            </form>
+        </div>
+    </main>
+{% endblock %}
