@@ -215,10 +215,16 @@ def logout():
 
 @app.route('/voice')
 def page():
+    if 'email' not in session:
+        return redirect(url_for('login'))
+
     return render_template('voice.html')
 
 @app.route('/voice/function')
 def call_function():
+    if 'email' not in session:
+        return redirect(url_for('login'))
+
     vision(data=recordAudio())
     return redirect(url_for('page'))
 
@@ -233,6 +239,9 @@ def weatherHome():
 
 @app.route("/WeatherStart")
 def weatherStart():
+    if 'email' not in session:
+        return redirect(url_for('login'))
+
     return render_template("WeatherStart.html")
 
 @app.route('/WeatherSettings', methods=['POST'])

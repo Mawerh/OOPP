@@ -175,7 +175,7 @@ input:checked + .slider:before {
 }
 
 .form-content {
-    margin: 10% auto;
+    margin: 4% auto 600px auto;
     width: 30%;
 }
 
