@@ -51,11 +51,13 @@ function devicePower(power) {
 }
 
 function removeDevice(device) {
-    var remove = confirm("The device will be removed. Are you sure?");
+    var remove = confirm(device+" will be removed. Are you sure?");
 
     if (remove === true) {
         $.post('/remote/remove', {
             'name': device
         });
+
+        window.location.replace('remote');
     }
 }

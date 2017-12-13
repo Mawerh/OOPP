@@ -1,13 +1,5 @@
-body {
-	background: whitesmoke;
-}
-
-.container, .container-fluid {
-	margin-top: 3%;
-}
-
 .error-message {
-	color: crimson;
+	color: red;
 }
 
 #button_login {
@@ -172,7 +164,7 @@ input:checked + .slider:before {
     margin-bottom: 20px;
 }
 
-.login_signup_bg {
+.background {
     position: fixed;
     z-index: -1;
     background-position: center;
@@ -183,7 +175,7 @@ input:checked + .slider:before {
 }
 
 .form-content {
-    margin: 6% auto;
+    margin: 10% auto;
     width: 30%;
 }
 
@@ -195,7 +187,7 @@ input:checked + .slider:before {
 /* Remote device dropdown menu */
 .device_dropdown_content {
     display: none;
-    background-color: darkgray;
+    background-color: #37474F;
     width: 70%;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -203,11 +195,11 @@ input:checked + .slider:before {
 }
 
 #button_device_info {
-    margin-right: 6px;
+    margin-left: 6px;
 }
 
 #button_device_remove {
-    margin-left: 6px;
+    margin-right: 6px;
 }
 
 #button_device_interface {

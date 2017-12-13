@@ -14,7 +14,16 @@ ref = db.reference()
 users_ref = ref.child('users')
 user_ref = ''
 
+device_types = ['light', 'fan', 'TV', 'AC', 'device']
+brands = ['Samsung', 'LG', 'Sony', 'Philips', 'Panasonic', 'Xiaomi', 'Hitachi', 'Fujitsu', 'Sharp', 'Toshiba']
+
 device_type_dict = {}
+
+device_name_dict = {}
+device_settings_dict = {}
+device_dict = {}
+device_power_dict = {}
+device_brand_dict = {}
 
 app = Flask(__name__)
 
@@ -42,9 +51,6 @@ def remote_devices():
     if 'email' not in session:
         return redirect(url_for('login'))
 
-    device_types = ['light', 'fan', 'TV', 'AC', 'device']
-    brands = ['Samsung', 'LG', 'Sony', 'Philips', 'Panasonic', 'Xiaomi', 'Hitachi', 'Fujitsu', 'Sharp', 'Toshiba']
-
     form = DeviceForm()
 
     user_remote_ref = user_ref.child('remote')
@@ -66,10 +72,21 @@ def remote_devices():
 
     dictionary = user_devices_ref.get()
 
+    global device_type_dict
+
+    global device_name_dict
+    global device_settings_dict
+    global device_dict
+    global device_power_dict
+    global device_brand_dict
+
+    device_type_dict = {}
+
     device_name_dict = {}
     device_settings_dict = {}
     device_dict = {}
-    device_power = {}
+    device_power_dict = {}
+    device_brand_dict = {}
 
     if dictionary is not None:
         device_dict = dictionary.items()
@@ -85,18 +102,17 @@ def remote_devices():
                 for key, val in settings.items():
                     device_settings_dict[name][key] = val
 
-                device_power[name] = device_settings_dict[name]['power']
-
-                global device_type_dict
                 device_type_dict[name] = device_type
+                device_power_dict[name] = device_settings_dict[name]['power']
+                device_brand_dict[name] = device_settings_dict[name]['brand']
 
             device_name_dict[device_type] = device_names
 
 
-    return render_template('remote_devices.html', brands=brands, device_types=device_types, form=form, device_dict=device_dict, device_name_dict=device_name_dict, device_settings_dict=device_settings_dict, device_power=device_power)
+    return render_template('remote_devices.html', brands=brands, device_types=device_types, form=form, device_dict=device_dict, device_name_dict=device_name_dict, device_settings_dict=device_settings_dict, device_power_dict=device_power_dict, device_brand_dict=device_brand_dict)
 
 @app.route('/remote/power', methods=['POST'])
-def power():
+def device_power():
     device_name = request.form['name']
     device_power = request.form['power']
 
@@ -109,6 +125,22 @@ def power():
     })
 
     return 'nothing'
+
+@app.route('/remote/remove', methods=['POST'])
+def device_remove():
+    device_name = request.form['name']
+
+    user_remote_ref = user_ref.child('remote')
+    user_devices_ref = user_remote_ref.child('devices')
+    user_device_type_ref = user_devices_ref.child(device_type_dict[device_name])
+
+    user_device_type_ref.child(device_name).delete()
+
+    return redirect(url_for('remote_devices'))
+
+@app.route('/remote/rooms')
+def rooms():
+    return render_template('remote_rooms.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
