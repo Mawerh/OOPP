@@ -69,6 +69,7 @@ def remote_devices():
             })
 
 
+
     dictionary = user_devices_ref.get()
 
     global device_type_dict
@@ -165,8 +166,7 @@ def signup():
                 'password': password_hash
             })
 
-            session['email'] = email
-            return redirect(url_for('page'))
+            return redirect(url_for('login'))
     elif request.method == 'GET':
         return render_template('signup.html', signupform=form)
 
