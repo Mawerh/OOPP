@@ -1,5 +1,5 @@
 /* The switch - the box around the slider */
-.switch {
+.weather_switch {
   position: relative;
   display: inline-block;
   width: 60px;
@@ -7,10 +7,10 @@
 }
 
 /* Hide default HTML checkbox */
-.switch input {display:none;}
+.weather_switch input {display:none;}
 
 /* The slider */
-.slider {
+.weather_slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -22,7 +22,7 @@
   transition: .4s;
 }
 
-.slider:before {
+.weather_slider:before {
   position: absolute;
   content: "";
   height: 26px;
@@ -34,25 +34,25 @@
   transition: .4s;
 }
 
-input:checked + .slider {
+input:checked + .weather_slider {
   background-color: #2196F3;
 }
 
-input:focus + .slider {
+input:focus + .weather_slider {
   box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before {
+input:checked + .weather_slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
 
 /* Rounded sliders */
-.slider.round {
+.weather_slider.round {
   border-radius: 34px;
 }
 
-.slider.round:before {
+.weather_slider.round:before {
   border-radius: 50%;
 }

@@ -9,8 +9,8 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main2.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/slider.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/weather_main2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/weather_slider.css') }}">
 
 
 
@@ -28,7 +28,7 @@
     <div class="container carousel-overlay text-center">
         <h1>Weather, Temperature and PSI.</h1>
         <p class="lead">Choose settings for your windows based on your preferences. E.g. If you want your windows to close when it is raining automatically, turn Mostly Clouds: ON</p>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Settings For your windows</button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Settings For Your Windows</button>
         <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -40,69 +40,69 @@
                     </div>
                     <div class="modal-body">
                         <h5>In the Morning</h5>
-                        <label class="switch">
+                        <label class="weather_switch">
                             <input type="checkbox">
-                            <span class="slider round"></span>
+                            <span class="weather_slider round"></span>
                         </label>
                         <hr>
                         <h5>When the sky is Mostly Cloudy</h5>
-                        <label class="switch">
+                        <label class="weather_switch">
                             <input type="checkbox">
-                            <span class="slider round"></span>
+                            <span class="weather_slider round"></span>
                         </label>
                         <hr>
                         <h5>When the sky is Mostly Sunny</h5>
-                        <label class="switch">
+                        <label class="weather_switch">
                             <input type="checkbox">
-                            <span class="slider round"></span>
+                            <span class="weather_slider round"></span>
                         </label>
                         <hr>
                         <h5>In the Evening</h5>
-                        <label class="switch">
+                        <label class="weather_switch">
                             <input type="checkbox">
-                            <span class="slider round"></span>
+                            <span class="weather_slider round"></span>
                         </label>
                         <hr>
                         <h5>When the temperature is 30 - 50 degree celcius</h5>
-                        <label class="switch">
+                        <label class="weather_switch">
                             <input type="checkbox">
-                            <span class="slider round"></span>
+                            <span class="weather_slider round"></span>
                         </label>
                         <hr>
                         <h5>When the temperature is 20 - 30 degree celcius</h5>
-                        <label class="switch">
+                        <label class="weather_switch">
                             <input type="checkbox">
-                            <span class="slider round"></span>
+                            <span class="weather_slider round"></span>
                         </label>
                         <hr>
                         <h5>When the temperature is 10 - 20 degree celcius</h5>
-                        <label class="switch">
+                        <label class="weather_switch">
                             <input type="checkbox">
-                            <span class="slider round"></span>
+                            <span class="weather_slider round"></span>
                         </label>
                         <hr>
                         <h5>When the PSI is 300 and above</h5>
-                        <label class="switch">
+                        <label class="weather_switch">
                             <input type="checkbox">
-                            <span class="slider round"></span>
+                            <span class="weather_slider round"></span>
                         </label>
                         <hr>
                         <h5>When the PSI is 200 - 300</h5>
-                        <label class="switch">
+                        <label class="weather_switch">
                             <input type="checkbox">
-                            <span class="slider round"></span>
+                            <span class="weatherslider round"></span>
                         </label>
                         <hr>
                         <h5>When the PSI is 100 - 200</h5>
-                        <label class="switch">
+                        <label class="weather_switch">
                             <input type="checkbox">
-                            <span class="slider round"></span>
+                            <span class="weather_slider round"></span>
                         </label>
                         <hr>
                         <h5>When the PSI is 0 - 100</h5>
-                        <label class="switch">
+                        <label class="weather_switch">
                             <input type="checkbox">
-                            <span class="slider round"></span>
+                            <span class="weather_slider round"></span>
                         </label>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
         <h2 class="lead">Current Humidity: {{ humid }}.</h2>
     </div>
     <div class="col-md-5 col-md-pull-7 text-center">
-      <img src="{{ url_for('static', filename='img/temphigh.gif') }}" class="featurette-image img-responsive" height ="250" width="225">
+        <img src="{{ url_for('static', filename='img/temphigh.gif') }}" class="featurette-image img-responsive" height ="250" width="225">
     </div>
   </div>
     <hr>
