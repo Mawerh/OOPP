@@ -1,0 +1,11 @@
+.container-fluid {
+	margin: 3% 0 5% 0;
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 15px 0 15px 0;
+    margin-bottom: 0;
+}

@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/weather_main.css') }}">
+
+    <title>Household Weather</title>
+
+	<!-- Carousel -->
+<div id="bg-fade-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+<!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="slide1"></div>
+        </div>
+    </div><!-- .carousel-inner -->
+    <div class="container carousel-overlay text-center">
+        <h1>Weather, Temperature and PSI.</h1>
+        <p class="lead">Choose settings based on your preferences. Update them and let the system do the work.</p>
+    </div>
+</div><!-- .carousel -->
+<!--end bg-carousel-->
+
+<!--The rest of your page content below-->
+<div class="container">
+  <!-- Example row of columns -->
+   <div class="row text-center">
+    <div class="col-md-4">
+      <div class="fa fa-paw fa-3x circles"></div>
+      <h2>Weather</h2>
+        <p>For the weather, you can choose which type of weather you would want your windows to automatically close or stay open.</p>
+      <p><a class="btn btn-default" href="http://www.weather.gov.sg/weather-forecast-2hrnowcast-2/" role="button">See the weather in real time »</a></p>
+    </div>
+    <div class="col-md-4">
+      <div class="fa fa-heart fa-3x circles"></div>
+      <h2>Temperature</h2>
+      <p>For the temperature, you can choose when your windows will open or close when your house is too hot or cold.</p>
+      <p><a class="btn btn-default" href="http://www.weather.gov.sg/home/" role="button">See the temperature in real time »</a></p>
+    </div>
+    <div class="col-md-4">
+      <div class="fa fa-book fa-3x circles"></div>
+      <h2>PSI</h2>
+      <p>For the PSI, you can choose when your windows will close when the PSI raises to dangerous levels.</p>
+      <p><a class="btn btn-default" href="http://www.haze.gov.sg/" role="button">See the PSI in real time »</a></p>
+    </div>
+  </div>
+
+<hr>
+
+{% endblock %}

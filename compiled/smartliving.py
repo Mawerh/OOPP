@@ -5,6 +5,14 @@ from werkzeug import generate_password_hash, check_password_hash
 import firebase_admin
 from firebase_admin import credentials, db
 
+from voice_functions import *
+
+import requests
+
+app = Flask(__name__)
+
+#***START OF YEE LEI'S CODE***
+
 cred = credentials.Certificate("cred/ooppsmartliving-firebase-adminsdk-wchbx-6f20b0e93f.json")
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://ooppsmartliving.firebaseio.com/'
@@ -25,26 +33,17 @@ device_dict = {}
 device_power_dict = {}
 device_brand_dict = {}
 
-app = Flask(__name__)
-
 app.secret_key = 'oopp2017group4'
 
 @app.route('/')
 def index():
     if 'email' in session:
-        return redirect(url_for('home'))
+        return redirect(url_for('page'))
 
     loginform = LoginForm(prefix='login')
     signupform = SignupForm(prefix='signup')
 
-    return render_template('index.html', loginform=loginform, signupform=signupform)
-
-@app.route('/home')
-def home():
-    if 'email' not in session:
-        return redirect(url_for('index'))
-
-    return render_template('home.html')
+    return render_template('login.html', loginform=loginform, signupform=signupform)
 
 @app.route('/remote', methods=['GET', 'POST'])
 def remote_devices():
@@ -68,6 +67,7 @@ def remote_devices():
                 device_name+'/brand': device_brand,
                 device_name+'/power': 'off'
             })
+
 
 
     dictionary = user_devices_ref.get()
@@ -145,7 +145,7 @@ def rooms():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if 'email' in session:
-        return redirect(url_for('home'))
+        return redirect(url_for('voice'))
 
     form = SignupForm(prefix='signup')
 
@@ -166,15 +166,14 @@ def signup():
                 'password': password_hash
             })
 
-            session['email'] = email
-            return redirect(url_for('home'))
+            return redirect(url_for('login'))
     elif request.method == 'GET':
         return render_template('signup.html', signupform=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if 'email' in session:
-        return redirect(url_for('home'))
+        return redirect(url_for('voice'))
 
     form = LoginForm(prefix='login')
 
@@ -196,7 +195,7 @@ def login():
 
             if validate_email and check_password_hash(val['password'], password):
                 session['email'] = email
-                return redirect(url_for('home'))
+                return redirect(url_for('page'))
             else:
                 return redirect(url_for('login'))
 
@@ -206,7 +205,60 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('email', None)
-    return redirect(url_for('index'))
+    return redirect(url_for('login'))
+
+#***END OF YEE LEI'S CODE***
+
+
+
+#***START OF JOEY'S CODE***
+
+@app.route('/voice')
+def page():
+    if 'email' not in session:
+        return redirect(url_for('login'))
+
+    return render_template('voice.html')
+
+@app.route('/voice/function')
+def call_function():
+    if 'email' not in session:
+        return redirect(url_for('login'))
+
+    vision(data=recordAudio())
+    return redirect(url_for('page'))
+
+#***END OF JOEY'S CODE***
+
+
+#***START OF JOHN'S CODE***
+
+@app.route("/WeatherHome")
+def weatherHome():
+    return render_template("WeatherHome.html")
+
+@app.route("/WeatherStart")
+def weatherStart():
+    if 'email' not in session:
+        return redirect(url_for('login'))
+
+    return render_template("WeatherStart.html")
+
+@app.route('/WeatherSettings', methods=['POST'])
+def settings():
+    r = requests.get("http://api.openweathermap.org/data/2.5/weather?q=Singapore,SG&appid=53e032f7efd36727cf5fa955bb4ffeb1")
+    json_object = r.json()
+    temp_k = float(json_object["main"]["temp"])
+    humidity = float(json_object['main']['humidity'])
+    wind_speed = float(json_object['wind']['speed'])
+    weather = json_object['weather'][0]["main"]
+    weather_descrip = json_object['weather'][0]["description"]
+    temp_c = int(temp_k - 273.15)
+    return render_template('WeatherSettings.html', temp=temp_c, humid=humidity, windspd=wind_speed, weath=weather, descrip=weather_descrip)
+
+#***END OF JOHN'S CODE***
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

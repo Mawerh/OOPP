@@ -1,0 +1,149 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/weather_main2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/weather_slider.css') }}">
+
+    <title>Household Weather</title>
+
+	<!-- Carousel -->
+<div id="bg-fade-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+<!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="slide1"></div>
+        </div>
+    </div><!-- .carousel-inner -->
+    <div class="container carousel-overlay text-center">
+        <h1>Weather, Temperature and PSI.</h1>
+        <p class="lead">Choose settings for your windows based on your preferences. E.g. If you want your windows to close when it is raining automatically, turn Mostly Clouds: ON</p>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Settings For your windows</button>
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">My Automated Window Settings:<br>(Open Windows(Turn ON)/Close Windows(Turn OFF))</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5>In the Morning</h5>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                        <hr>
+                        <h5>When the sky is Mostly Cloudy</h5>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                        <hr>
+                        <h5>When the sky is Mostly Sunny</h5>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                        <hr>
+                        <h5>In the Evening</h5>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                        <hr>
+                        <h5>When the temperature is 30 - 50 degree celcius</h5>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                        <hr>
+                        <h5>When the temperature is 20 - 30 degree celcius</h5>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                        <hr>
+                        <h5>When the temperature is 10 - 20 degree celcius</h5>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                        <hr>
+                        <h5>When the PSI is 300 and above</h5>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                        <hr>
+                        <h5>When the PSI is 200 - 300</h5>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                        <hr>
+                        <h5>When the PSI is 100 - 200</h5>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                        <hr>
+                        <h5>When the PSI is 0 - 100</h5>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- .carousel -->
+<!--end bg-carousel-->
+  <!-- START THE FEATURETTES -->
+
+  <hr>
+<div class="container">
+  <!-- Example row of columns -->
+   <div class="row">
+       <div class="col-md-7">
+           <h2 class="featurette-heading">Weather <span class="text-muted">Choose when you want your windows open/close depending on the weather.</span></h2>
+           <h2 class="lead">Current Weather: {{ weath }}.</h2>
+           <h2 class="lead">Current Weather Description: {{descrip}}. </h2>
+           <h2 class="lead">Current Wind Speed: {{ windspd }} knots .</h2>
+       </div>
+    <div class="col-md-5 text-center">
+      <img src="{{ url_for('static', filename='img/partlycloudy.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+    </div>
+   </div>
+    <hr>
+
+  <div class="row">
+    <div class="col-md-7 col-md-push-5">
+      <h2 class="featurette-heading">Temperature <span class="text-muted">Choose when you want your windows to open/close depending on the temperature. </span></h2>
+      <h2 class="lead">Current temperature: {{ temp }} degrees.</h2>
+        <h2 class="lead">Current Humidity: {{ humid }} %.</h2>
+    </div>
+    <div class="col-md-5 col-md-pull-7 text-center">
+      <img src="{{ url_for('static', filename='img/temphigh.gif') }}" class="featurette-image img-responsive" height ="250" width="225">
+    </div>
+  </div>
+    <hr>
+
+  <div class="row">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">PSI <span class="text-muted">Checkmate.</span></h2>
+      <h2 class="lead">Current PSI: 54 (Moderate range){{ psi }}.</h2>
+    </div>
+    <div class="col-md-5 text-center">
+      <img src="{{ url_for('static', filename='img/haze.gif') }}" class="featurette-image img-responsive" height="300" width="400">
+    </div>
+  </div>
+  <!-- /END THE FEATURETTES -->
+</div>
+
+<hr>
+
+{% endblock %}
