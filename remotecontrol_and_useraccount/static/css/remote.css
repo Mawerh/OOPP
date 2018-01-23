@@ -205,3 +205,32 @@ input:checked + .slider:before {
 #button_device_interface {
     margin-top: 5px;
 }
+
+.device_type_title {
+    float: left;
+}
+
+.device_type_count {
+    float: right;
+}
+
+/* ### REMOTE ROOMS PAGE ### */
+
+#floorplan_boundary {
+    border: 3px solid limegreen;
+    border-radius: 15px;
+    width: 80%;
+    height: 80vh;
+}
+
+.room_test {
+    border: 1px solid black;
+    width: 10%;
+    height: 20%;
+    text-align: center;
+    background: #3399ff;
+}
+
+#test_room_name {
+    vertical-align: middle;
+}

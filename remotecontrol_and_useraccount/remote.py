@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from forms import SignupForm, LoginForm, DeviceForm
+from devices import Device
 from werkzeug import generate_password_hash, check_password_hash
 
 import firebase_admin
@@ -15,15 +16,9 @@ users_ref = ref.child('users')
 user_ref = ''
 
 device_types = ['light', 'fan', 'TV', 'AC', 'device']
-brands = ['Samsung', 'LG', 'Sony', 'Philips', 'Panasonic', 'Xiaomi', 'Hitachi', 'Fujitsu', 'Sharp', 'Toshiba']
+device_brands = ['Samsung', 'LG', 'Sony', 'Philips', 'Panasonic', 'Xiaomi', 'Hitachi', 'Fujitsu', 'Sharp', 'Toshiba']
 
-device_type_dict = {}
-
-device_name_dict = {}
-device_settings_dict = {}
 device_dict = {}
-device_power_dict = {}
-device_brand_dict = {}
 
 app = Flask(__name__)
 
@@ -58,8 +53,8 @@ def remote_devices():
 
     if request.method == 'POST':
         if form.validate():
-            device_brand = request.form['device_brand']
             device_type = request.form['device_type']
+            device_brand = request.form['device_brand']
             device_name = form.name.data
 
             user_device_type_ref = user_devices_ref.child(device_type)
@@ -69,56 +64,42 @@ def remote_devices():
                 device_name+'/power': 'off'
             })
 
+    global device_dict
+    device_dict = {}
+    device_type_count = {}
 
     dictionary = user_devices_ref.get()
 
-    global device_type_dict
-
-    global device_name_dict
-    global device_settings_dict
-    global device_dict
-    global device_power_dict
-    global device_brand_dict
-
-    device_type_dict = {}
-
-    device_name_dict = {}
-    device_settings_dict = {}
-    device_dict = {}
-    device_power_dict = {}
-    device_brand_dict = {}
-
     if dictionary is not None:
-        device_dict = dictionary.items()
+        for device_type, devices in dictionary.items():
+            device_list = []
 
-        for device_type, devices in device_dict:
-            device_names = []
+            device_type_count[device_type] = len(devices)
 
-            for name, settings in devices.items():
-                device_names.append(name)
+            for device_name, device_settings in devices.items():
+                device_brand = device_settings['brand']
+                device_power = device_settings['power']
 
-                device_settings_dict[name] = {}
+                device = Device(device_type, device_brand, device_name, 'test_room', device_power)
+                device_list.append(device)
 
-                for key, val in settings.items():
-                    device_settings_dict[name][key] = val
+            device_dict[device_type] = device_list
 
-                device_type_dict[name] = device_type
-                device_power_dict[name] = device_settings_dict[name]['power']
-                device_brand_dict[name] = device_settings_dict[name]['brand']
+    for device_type in device_types:
+        if device_type not in device_type_count:
+            device_type_count[device_type] = 0
 
-            device_name_dict[device_type] = device_names
-
-
-    return render_template('remote_devices.html', brands=brands, device_types=device_types, form=form, device_dict=device_dict, device_name_dict=device_name_dict, device_settings_dict=device_settings_dict, device_power_dict=device_power_dict, device_brand_dict=device_brand_dict)
+    return render_template('remote_devices.html', deviceform=form, device_types=device_types, device_brands=device_brands, device_dict=device_dict, device_type_count=device_type_count)
 
 @app.route('/remote/power', methods=['POST'])
-def device_power():
+def remote_power():
+    device_type = request.form['type']
     device_name = request.form['name']
     device_power = request.form['power']
 
     user_remote_ref = user_ref.child('remote')
     user_devices_ref = user_remote_ref.child('devices')
-    user_device_type_ref = user_devices_ref.child(device_type_dict[device_name])
+    user_device_type_ref = user_devices_ref.child(device_type)
 
     user_device_type_ref.update({
         device_name+'/power': device_power
@@ -128,18 +109,19 @@ def device_power():
 
 @app.route('/remote/remove', methods=['POST'])
 def device_remove():
+    device_type = request.form['type']
     device_name = request.form['name']
 
     user_remote_ref = user_ref.child('remote')
     user_devices_ref = user_remote_ref.child('devices')
-    user_device_type_ref = user_devices_ref.child(device_type_dict[device_name])
+    user_device_type_ref = user_devices_ref.child(device_type)
 
     user_device_type_ref.child(device_name).delete()
 
     return redirect(url_for('remote_devices'))
 
 @app.route('/remote/rooms')
-def rooms():
+def remote_rooms():
     return render_template('remote_rooms.html')
 
 @app.route('/signup', methods=['GET', 'POST'])

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('.form_device_name').on('shown.bs.modal', function () {
+    $('.form_device_name').on('shown.bs.modal', function() {
         $('.device_name_input').trigger('focus');
     });
 
@@ -9,17 +9,20 @@ $(document).ready(function() {
     });
 
     $('.button_device_power input').change(function() {
-        var device = $(this).attr('data-device-switch');
+        var device_type = $(this).attr('data-device-switch-type');
+        var device_name = $(this).attr('data-device-switch-name');
 
         if (this.checked) {
             $.post('/remote/power', {
-                'name': device,
+                'type': device_type,
+                'name': device_name,
                 'power': 'on'
             });
         }
         else {
             $.post('/remote/power', {
-                'name': device,
+                'type': device_type,
+                'name': device_name,
                 'power': 'off'
             });
         }
@@ -37,25 +40,13 @@ function getDeviceName(type, brand) {
     $('#'+form_modal_id).modal('show');
 }
 
-function devicePower(power) {
-    if (power.innerHTML === 'OFF') {
-        power.innerHTML = 'ON';
-        power.classList.add('btn-success');
-        power.classList.remove('btn-danger')
-    }
-    else {
-        power.innerHTML = 'OFF';
-        power.classList.add('btn-danger');
-        power.classList.remove('btn-success')
-    }
-}
-
-function removeDevice(device) {
-    var remove = confirm(device+" will be removed. Are you sure?");
+function removeDevice(device_type, device_brand, device_name) {
+    var remove = confirm(device_name+" ("+device_brand+" "+device_type+") will be removed. Are you sure?");
 
     if (remove === true) {
         $.post('/remote/remove', {
-            'name': device
+            'type': device_type,
+            'name': device_name
         });
 
         window.location.replace('remote');

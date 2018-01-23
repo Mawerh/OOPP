@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <title>Remote Rooms</title>
+
+    <img src="{{ url_for('static', filename='img/remote_bg.png') }}" class="background">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2" id="left">
+                {% include 'includes/_remote_nav.html' %}
+            </div>
+
+            <div id="floorplan_boundary">
+                <div class="room_test">
+                    <span id="test_room_name">Test Room 1</span>
+                </div>
+
+                <div class="room_test">
+                    <span id="test_room_name">Test Room 2</span>
+                </div>
+
+                <div class="room_test">
+                    <span id="test_room_name">Test Room 3</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.room_test').draggable({
+                containment: '#floorplan_boundary',
+                snap: true
+            });
+        });
+    </script>
+{% endblock %}
