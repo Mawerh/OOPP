@@ -2,11 +2,20 @@
 	margin-top: 2%;
 }
 
+.navbar {
+    background: #1B2838;
+}
+
+.navbar-brand {
+    font-size: 150%;
+}
+
 footer {
+    background: #101822; /* #1B1B1B */
     position: absolute;
-    bottom: -7%;
+    bottom: -10%;
     left: 0;
     right: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }

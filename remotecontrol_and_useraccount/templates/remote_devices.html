@@ -3,176 +3,166 @@
 {% block body %}
     <title>Remote Devices</title>
 
-    <img src="{{ url_for('static', filename='img/remote_bg.png') }}" class="background">
-
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-2" id="left">
-                {% include 'includes/_remote_nav.html' %}
-            </div>
+            {% include 'includes/_remote_nav.html' %}
 
-            <div class="col-sm" id="middle">
-                <div id="device_menu">
-                    <table class="table table-bordered table-responsive-sm table-dark" id="device_table">
-                        <thead>
-                            <th scope="col" id="header_light" class="bg-primary text-white device_menu_header"><h1 class="device_type_title">LIGHT</h1> <h1 class="device_type_count">{{ device_type_count['light'] }}</h1></th>
-                            <th scope="col" id="header_fan" class="bg-success text-white device_menu_header"><h1 class="device_type_title">FAN</h1> <h1 class="device_type_count">{{ device_type_count['fan'] }}</h1></th>
-                            <th scope="col" id="header_tv" class="bg-warning text-white device_menu_header"><h1 class="device_type_title">TV</h1> <h1 class="device_type_count">{{ device_type_count['TV'] }}</h1></th>
-                            <th scope="col" id="header_ac" class="bg-danger text-white device_menu_header"><h1 class="device_type_title">AC</h1> <h1 class="device_type_count">{{ device_type_count['AC'] }}</h1></th>
-                            <th scope="col" id="header_other" class="bg-info text-white device_menu_header"><h1 class="device_type_title">OTHER</h1> <h1 class="device_type_count">{{ device_type_count['device'] }}</h1></th>
-                        </thead>
-                        <tbody>
-                            {% for i in range(10) %}
-                                <tr class="device_menu_row">
-                                    {% for device_type in device_types %}
-                                        <td>
-                                            {% for device in device_dict[device_type] %}
-                                                {% if device == device_dict[device_type][i] %}
-                                                    <label class="switch button_device_power">
-                                                        <input type="checkbox" data-device-switch="{{ device.type+device.name }}" data-device-switch-type="{{ device.type }}" data-device-switch-name="{{ device.name }}">
-                                                        <span class="slider round"></span>
-                                                    </label>
+            <div class="remote_content col-sm">
+                <table class="table table-bordered table-responsive-sm table-dark" id="device_table">
+                    <thead>
+                        <th scope="col" id="header_light" class="bg-primary text-white device_menu_header"><h1 class="device_type_title">LIGHT</h1> <h1 class="device_type_count">{{ device_type_count['light'] }}</h1></th>
+                        <th scope="col" id="header_fan" class="bg-success text-white device_menu_header"><h1 class="device_type_title">FAN</h1> <h1 class="device_type_count">{{ device_type_count['fan'] }}</h1></th>
+                        <th scope="col" id="header_tv" class="bg-warning text-white device_menu_header"><h1 class="device_type_title">TV</h1> <h1 class="device_type_count">{{ device_type_count['TV'] }}</h1></th>
+                        <th scope="col" id="header_ac" class="bg-danger text-white device_menu_header"><h1 class="device_type_title">AC</h1> <h1 class="device_type_count">{{ device_type_count['AC'] }}</h1></th>
+                        <th scope="col" id="header_other" class="bg-info text-white device_menu_header"><h1 class="device_type_title">OTHER</h1> <h1 class="device_type_count">{{ device_type_count['device'] }}</h1></th>
+                    </thead>
+                    <tbody>
+                        {% for i in range(10) %}
+                            <tr class="device_menu_row">
+                                {% for device_type in device_types %}
+                                    <td>
+                                        {% for device in device_dict[device_type] %}
+                                            {% if device == device_dict[device_type][i] %}
+                                                <label class="switch button_device_power">
+                                                    <input type="checkbox" data-device-switch="{{ device.type+device.name }}" data-device-switch-type="{{ device.type }}" data-device-switch-name="{{ device.name }}">
+                                                    <span class="slider round"></span>
+                                                </label>
 
-                                                    <script>
-                                                        var device_switch = $('.button_device_power input[data-device-switch="{{ device.type+device.name }}"]');
+                                                <script>
+                                                    var device_switch = $('.button_device_power input[data-device-switch="{{ device.type+device.name }}"]');
 
-                                                        {% if device.power == 'off' %}
-                                                            device_switch.prop("checked", false);
-                                                        {% elif device.power == 'on' %}
-                                                            device_switch.prop("checked", true);
-                                                        {% endif %}
-                                                    </script>
+                                                    {% if device.power == 'off' %}
+                                                        device_switch.prop("checked", false);
+                                                    {% elif device.power == 'on' %}
+                                                        device_switch.prop("checked", true);
+                                                    {% endif %}
+                                                </script>
 
-                                                    <div class="device_dropdown">
-                                                        <button type="button" class="button_device btn btn-outline-primary">{{ device.name }}</button>
-                                                        <div class="device_dropdown_content" align="center">
-                                                            <button type="button" class="btn btn-danger" id="button_device_remove" onclick='removeDevice("{{ device.type }}", "{{ device.brand }}", "{{ device.name }}")'>
-                                                                Delete
-                                                            </button>
-                                                            <button type="button" class="btn btn-warning" id="button_device_info" data-toggle="modal" data-target="{{ '#device_info_'+device.type+device.name.replace(' ', '') }}">
-                                                                Info
-                                                            </button>
-                                                            <button type="button" class="btn btn-info" id="button_device_interface">
-                                                                Remote Interface
-                                                            </button>
-                                                        </div>
+                                                <div class="device_dropdown">
+                                                    <button type="button" class="button_device btn btn-outline-primary">{{ device.name }}</button>
+                                                    <div class="device_dropdown_content" align="center">
+                                                        <button type="button" class="btn btn-danger" id="button_device_remove" onclick='removeDevice("{{ device.type }}", "{{ device.brand }}", "{{ device.name }}")'>
+                                                            Delete
+                                                        </button>
+                                                        <button type="button" class="btn btn-warning" id="button_device_info" data-toggle="modal" data-target="{{ '#device_info_'+device.type+device.name.replace(' ', '') }}">
+                                                            Info
+                                                        </button>
+                                                        <button type="button" class="btn btn-info" id="button_device_interface">
+                                                            Remote Interface
+                                                        </button>
                                                     </div>
+                                                </div>
 
-                                                    <div class="modal fade text-dark" id="{{ 'device_info_'+device.type+device.name.replace(' ', '') }}" tabindex="-1" role="dialog" aria-labelledby="{{ 'device_info_label_'+device.type+device.name.replace(' ', '') }}" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="{{ 'device_info_label_'+device.type+device.name.replace(' ', '') }}">
-                                                                        Device Information
-                                                                    </h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
+                                                <div class="modal fade" id="{{ 'device_info_'+device.type+device.name.replace(' ', '') }}" tabindex="-1" role="dialog" aria-labelledby="{{ 'device_info_label_'+device.type+device.name.replace(' ', '') }}" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content text-light bg-dark">
+                                                            <div class="modal-header device_info_header">
+                                                                <h4 class="modal-title" id="{{ 'device_info_label_'+device.type+device.name.replace(' ', '') }}">
+                                                                    Device Information
+                                                                </h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span class="text-light" aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
 
-                                                                <div class="modal-body">
-                                                                    <h6>
-                                                                        Type:
-                                                                        {% if device.type == 'device' %}
-                                                                            Other
-                                                                        {% elif device.type == 'TV' or device.type == 'AC' %}
-                                                                            {{ device.type }}
-                                                                        {% else %}
-                                                                            {{ device.type.title() }}
-                                                                        {% endif %}
-                                                                        <br><br>
-                                                                        Brand: {{ device.brand }}
-                                                                        <br><br>
-                                                                        Name: {{ device.name }}
-                                                                    </h6>
-                                                                </div>
+                                                            <div class="modal-body">
+                                                                <h6>
+                                                                    Type:
+                                                                    {% if device.type == 'device' %}
+                                                                        Other
+                                                                    {% elif device.type == 'TV' or device.type == 'AC' %}
+                                                                        {{ device.type }}
+                                                                    {% else %}
+                                                                        {{ device.type.title() }}
+                                                                    {% endif %}
+                                                                    <br><br>
+                                                                    Brand: {{ device.brand }}
+                                                                    <br><br>
+                                                                    Name: {{ device.name }}
+                                                                </h6>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </td>
-                                    {% endfor %}
-                                </tr>
-                            {% endfor %}
-
-                            <tr class="device_menu_row text-dark">
-                                {% for device_type in device_types %}
-                                    <td>
-                                        <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="{{ '#add_device_'+device_type }}">
-                                            Add new device
-                                        </button>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
                                     </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
 
-                                    <div class="modal fade" id="{{ 'add_device_'+device_type }}" tabindex="-1" role="dialog" aria-labelledby="{{ 'add_device_label_'+device_type }}" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="{{ 'add_device_label_'+device_type }}">
-                                                        Select {{ device_type }} brand
-                                                    </h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
+                        <tr class="device_menu_row">
+                            {% for device_type in device_types %}
+                                <td>
+                                    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="{{ '#add_device_'+device_type }}">
+                                        Add new device
+                                    </button>
+                                </td>
+
+                                <div class="modal fade" id="{{ 'add_device_'+device_type }}" tabindex="-1" role="dialog" aria-labelledby="{{ 'add_device_label_'+device_type }}" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content text-light bg-dark">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="{{ 'add_device_label_'+device_type }}">
+                                                    Select {{ device_type }} brand
+                                                </h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span class="text-light" aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                {% for device_brand in device_brands %}
+                                                    <button type="button" class="device_brand list-group-item list-group-item-action text-light bg-dark border-secondary" onclick="getDeviceName('{{ device_type }}', '{{ device_brand }}')">
+                                                        {{ device_brand }}
                                                     </button>
-                                                </div>
-
-                                                <div class="modal-body">
-                                                    {% for device_brand in device_brands %}
-                                                        <button type="button" class="device_brand list-group-item list-group-item-action" onclick="getDeviceName('{{ device_type }}', '{{ device_brand }}')">
-                                                            {{ device_brand }}
-                                                        </button>
-                                                    {% endfor %}
-                                                </div>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                    {% for device_brand in device_brands %}
-                                        <div class="form_device_name modal fade" id="{{ 'name_device_'+device_type+'_'+device_brand }}" tabindex="-1" role="dialog" aria-labelledby="{{ 'name_device_label_'+device_type }}" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="{{ 'name_device_label_'+device_type+'_'+device_brand }}"></h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                {% for device_brand in device_brands %}
+                                    <div class="form_device_name modal fade" id="{{ 'name_device_'+device_type+'_'+device_brand }}" tabindex="-1" role="dialog" aria-labelledby="{{ 'name_device_label_'+device_type }}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content text-light bg-dark">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="{{ 'name_device_label_'+device_type+'_'+device_brand }}"></h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span class="text-light" aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+
+                                                <form class="device_form" data-device-type="{{ device_type }}" data-device-brand="{{ device_brand }}" method="POST" action="/remote">
+                                                    <div class="modal-body">
+                                                        {{ deviceform.hidden_tag() }}
+
+                                                        <div class="form-group">
+                                                            {% if deviceform.name.errors %}
+                                                                {% for error in deviceform.name.errors %}
+                                                                    <p class="error-message">{{ error }}</p>
+                                                                {% endfor %}
+                                                            {% endif %}
+
+                                                            {{ deviceform.name(class='device_name_input form-control', placeholder='Device name', required=True) }}
+
+                                                            <input type="hidden" name="device_type" value="{{ device_type }}">
+                                                            <input type="hidden" name="device_brand" value="{{ device_brand }}">
+                                                        </div>
                                                     </div>
 
-                                                    <form class="device_form" data-device-type="{{ device_type }}" data-device-brand="{{ device_brand }}" method="POST" action="/remote">
-                                                        <div class="modal-body">
-                                                            {{ deviceform.hidden_tag() }}
-
-                                                            <div class="form-group">
-                                                                {% if deviceform.name.errors %}
-                                                                    {% for error in deviceform.name.errors %}
-                                                                        <p class="error-message">{{ error }}</p>
-                                                                    {% endfor %}
-                                                                {% endif %}
-
-                                                                {{ deviceform.name(class='device_name_input form-control', placeholder='Device name', required=True) }}
-
-                                                                <input type="hidden" name="device_type" value="{{ device_type }}">
-                                                                <input type="hidden" name="device_brand" value="{{ device_brand }}">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="modal-footer">
-                                                            {{ deviceform.submit(class='btn btn-primary') }}
-                                                        </div>
-                                                    </form>
-                                                </div>
+                                                    <div class="modal-footer">
+                                                        {{ deviceform.submit(class='btn btn-primary') }}
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
-                                    {% endfor %}
+                                    </div>
                                 {% endfor %}
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="NOcol-sm-1" id="right">
-
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
