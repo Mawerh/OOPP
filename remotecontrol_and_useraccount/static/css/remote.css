@@ -218,16 +218,9 @@ input:checked + .slider:before {
     padding: 10px 0 5px 0;
 }
 
-#button_device_info {
-    margin-left: 6px;
-}
-
-#button_device_remove {
-    margin-right: 6px;
-}
-
-#button_device_interface {
-    margin-top: 5px;
+.device_dropdown_button {
+    width: 90%;
+    margin: 5px 0 5px 0;
 }
 
 .device_type_title {

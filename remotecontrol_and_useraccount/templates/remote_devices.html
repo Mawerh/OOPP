@@ -39,16 +39,16 @@
                                                 </script>
 
                                                 <div class="device_dropdown">
-                                                    <button type="button" class="button_device btn btn-outline-primary">{{ device.name }}</button>
+                                                    <button type="button" class="button_device btn btn-outline-info">{{ device.name }}</button>
                                                     <div class="device_dropdown_content" align="center">
-                                                        <button type="button" class="btn btn-danger" id="button_device_remove" onclick='removeDevice("{{ device.type }}", "{{ device.brand }}", "{{ device.name }}")'>
-                                                            Delete
-                                                        </button>
-                                                        <button type="button" class="btn btn-warning" id="button_device_info" data-toggle="modal" data-target="{{ '#device_info_'+device.type+device.name.replace(' ', '') }}">
-                                                            Info
-                                                        </button>
-                                                        <button type="button" class="btn btn-info" id="button_device_interface">
+                                                        <button type="button" class="btn btn-outline-primary device_dropdown_button">
                                                             Remote Interface
+                                                        </button>
+                                                        <button type="button" class="btn btn-outline-success device_dropdown_button" data-toggle="modal" data-target="{{ '#device_info_'+device.type+device.name.replace(' ', '') }}">
+                                                            Device Info
+                                                        </button>
+                                                        <button type="button" class="btn btn-outline-danger device_dropdown_button" onclick='removeDevice("{{ device.type }}", "{{ device.brand }}", "{{ device.name }}")'>
+                                                            Remove
                                                         </button>
                                                     </div>
                                                 </div>

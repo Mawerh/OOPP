@@ -41,7 +41,7 @@ function getDeviceName(type, brand) {
 }
 
 function removeDevice(device_type, device_brand, device_name) {
-    var remove = confirm(device_name+" ("+device_brand+" "+device_type+") will be removed. Are you sure?");
+    var remove = confirm("Are you sure you want to remove "+device_name+"? ("+device_brand+" "+device_type+")");
 
     if (remove === true) {
         $.post('/remote/remove', {
