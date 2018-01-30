@@ -8,21 +8,56 @@
             {% include 'includes/_remote_nav.html' %}
 
             <div class="remote_content col-sm">
-                <div class="col-sm">
-                    <button type="button">Add room</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_add_room">
+                    Add Room
+                </button>
+
+                <div class="modal fade" id="modal_add_room" tabindex="-1" role="dialog" aria-labelledby="add_room_label" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content text-light bg-dark">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="add_room_label">
+                                    Enter room name
+                                </h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-light" aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <form method="POST" action="/remote/rooms">
+                                <div class="modal-body">
+                                    {{ roomform.hidden_tag() }}
+
+                                    <div class="form-group">
+                                        {% if roomform.name.errors %}
+                                            {% for error in roomform.name.errors %}
+                                                <p class="error-message">{{ error }}</p>
+                                            {% endfor %}
+                                        {% endif %}
+
+                                        {{ roomform.name(class='modal_focus_input form-control', placeholder='Room name', required=True) }}
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    {{ roomform.submit(class='btn btn-outline-light') }}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col" id="floorplan_boundary">
-                    <div class="room_test">
-                        <span id="test_room_name">Test Room 1</span>
+                <div class="testcol" id="floorplan_boundary">
+                    <div class="room_test" id="test_resizable">
+                        <span class="test_room_name">Test Room 1</span>
                     </div>
 
                     <div class="room_test">
-                        <span id="test_room_name">Test Room 2</span>
+                        <span class="test_room_name">Test Room 2</span>
                     </div>
 
                     <div class="room_test">
-                        <span id="test_room_name">Test Room 3</span>
+                        <span class="test_room_name">Test Room 3</span>
                     </div>
                 </div>
             </div>
@@ -35,6 +70,10 @@
             $('.room_test').draggable({
                 containment: '#floorplan_boundary',
                 snap: true
+            });
+
+            $('.room_test').resizable({
+                containment: '#floorplan_boundary'
             });
         });
     </script>

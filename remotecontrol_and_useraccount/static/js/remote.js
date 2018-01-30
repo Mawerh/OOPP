@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    $('.form_device_name').on('shown.bs.modal', function() {
-        $('.device_name_input').trigger('focus');
+    $('.modal').on('shown.bs.modal', function() {
+        $('.modal_focus_input').trigger('focus');
     });
 
     $('.button_device').on('click', function() {
@@ -29,15 +29,15 @@ $(document).ready(function() {
     });
 });
 
-function getDeviceName(type, brand) {
-    brand_modal_id = 'add_device_'+type;
-    $('#'+brand_modal_id).modal('hide');
+function setDeviceBrandModal(type) {
+    document.getElementById('modal_device_brand_label').innerHTML = 'Select '+type+' brand';
+    document.getElementById('header_device_type').innerHTML = type;
+    document.getElementById('input_device_type').value = type;
+}
 
-    label_id = 'name_device_label_'+type+'_'+brand;
-    document.getElementById(label_id).innerHTML = 'Name your '+brand+' '+type;
-
-    form_modal_id = 'name_device_'+type+'_'+brand;
-    $('#'+form_modal_id).modal('show');
+function setDeviceNameForm(brand) {
+    document.getElementById('header_device_brand').innerHTML = brand;
+    document.getElementById('input_device_brand').value = brand;
 }
 
 function removeDevice(device_type, device_brand, device_name) {
@@ -51,4 +51,24 @@ function removeDevice(device_type, device_brand, device_name) {
 
         window.location.replace('remote');
     }
+}
+
+function setDeviceInfo(type, brand, name, location) {
+    if (type === 'device') {
+        document.getElementById('device_info_type').innerHTML = 'Other';
+    }
+    else if (type === 'TV' || type === 'AC') {
+        document.getElementById('device_info_type').innerHTML = type;
+    }
+    else {
+        type = type.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+            return letter.toUpperCase();
+        });
+
+        document.getElementById('device_info_type').innerHTML = type;
+    }
+
+    document.getElementById('device_info_brand').innerHTML = brand;
+    document.getElementById('device_info_name').innerHTML = name;
+    document.getElementById('device_info_location').innerHTML = location;
 }

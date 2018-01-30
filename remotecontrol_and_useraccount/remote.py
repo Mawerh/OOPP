@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-from forms import SignupForm, LoginForm, DeviceForm
+from forms import SignupForm, LoginForm, DeviceForm, RoomForm
 from devices import Device
 from werkzeug import generate_password_hash, check_password_hash
 
@@ -16,7 +16,7 @@ users_ref = ref.child('users')
 user_ref = ''
 
 device_types = ['light', 'fan', 'TV', 'AC', 'device']
-device_brands = ['Samsung', 'LG', 'Sony', 'Philips', 'Panasonic', 'Xiaomi', 'Hitachi', 'Fujitsu', 'Sharp', 'Toshiba']
+device_brands = ['Samsung', 'LG', 'Sony', 'Philips', 'Panasonic', 'Xiaomi', 'Hitachi', 'Fujitsu', 'Sharp', 'Toshiba', 'Dyson', 'Roomba']
 
 device_dict = {}
 
@@ -67,6 +67,7 @@ def remote_devices():
     global device_dict
     device_dict = {}
     device_type_count = {}
+    device_count_range = 0
 
     dictionary = user_devices_ref.get()
 
@@ -75,6 +76,9 @@ def remote_devices():
             device_list = []
 
             device_type_count[device_type] = len(devices)
+
+            if device_count_range < len(devices):
+                device_count_range = len(devices)
 
             for device_name, device_settings in devices.items():
                 device_brand = device_settings['brand']
@@ -89,7 +93,7 @@ def remote_devices():
         if device_type not in device_type_count:
             device_type_count[device_type] = 0
 
-    return render_template('remote_devices.html', deviceform=form, device_types=device_types, device_brands=device_brands, device_dict=device_dict, device_type_count=device_type_count)
+    return render_template('remote_devices.html', deviceform=form, device_types=device_types, device_brands=device_brands, device_dict=device_dict, device_type_count=device_type_count, device_count_range=device_count_range+1)
 
 @app.route('/remote/power', methods=['POST'])
 def remote_power():
@@ -120,9 +124,32 @@ def device_remove():
 
     return redirect(url_for('remote_devices'))
 
-@app.route('/remote/rooms')
+@app.route('/remote/rooms', methods=['GET', 'POST'])
 def remote_rooms():
-    return render_template('remote_rooms.html')
+    if 'email' not in session:
+        return redirect(url_for('login'))
+
+    form = RoomForm()
+
+    user_remote_ref = user_ref.child('remote')
+    user_rooms_ref = user_remote_ref.child('rooms')
+
+    if request.method == 'POST':
+        if form.validate():
+            room_name = form.name.data
+
+            user_room_ref = user_rooms_ref.child(room_name)
+
+            user_room_ref.update({
+                'name': room_name,
+                'length': 0,
+                'width': 0,
+                'area': 0,
+                'position_x': 0,
+                'position_y': 0,
+            })
+
+    return render_template('remote_rooms.html', roomform=form)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
