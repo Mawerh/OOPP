@@ -74,7 +74,7 @@
                         <tr class="device_menu_row">
                             {% for device_type in device_types %}
                                 <td>
-                                    <button type="button" class="button_add_device btn btn-outline-secondary" data-toggle="modal" data-target="#modal_device_brand" onclick="setDeviceBrandModal('{{ device_type }}')">
+                                    <button type="button" class="button_add_device btn btn-outline-secondary" data-toggle="modal" data-target="#modal_device_location" onclick="setLocationBrandModal('{{ device_type }}')">
                                         Add new device
                                     </button>
                                 </td>
@@ -82,6 +82,55 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <div class="modal fade" id="modal_device_location" tabindex="-1" role="dialog" aria-labelledby="modal_device_location_label" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content text-light bg-dark">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="modal_device_location_label"></h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-light" aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+                                {% for device_location in device_locations %}
+                                    <button type="button" class="list-group-item list-group-item-action text-light bg-dark border-secondary" data-dismiss="modal" data-toggle="modal" data-target="#modal_device_brand" onclick="setDeviceLocationInput('{{ device_location }}')">
+                                        {{ device_location }}
+                                    </button>
+                                {% endfor %}
+
+                                <button type="button" class="list-group-item list-group-item-action text-light bg-dark border-secondary" data-dismiss="modal" data-toggle="modal" data-target="#modal_location_name">Custom</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modal_location_name" tabindex="-1" role="dialog" aria-labelledby="modal_location_name_label" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content text-light bg-dark">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="modal_location_name_label">
+                                    Enter room name
+                                </h4>
+
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-light" aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <form action="javascript:void(0);">
+                                <div class="modal-body">
+                                    <input type="text" id="input_device_other_location" class="modal_focus_input form-control" placeholder="Room name" onfocus="this.value=''" required>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-outline-light" value="Next" onclick="showDeviceBrandModal()">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="modal fade" id="modal_device_brand" tabindex="-1" role="dialog" aria-labelledby="modal_device_brand_label" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -119,13 +168,15 @@
                                 </button>
                             </div>
 
-                            <div class="modal-body">
-                                <input type="text" class="modal_focus_input form-control" name="device_other_brand" placeholder="Brand name" onfocus="this.value=''" required>
-                            </div>
+                            <form action="javascript:void(0);">
+                                <div class="modal-body">
+                                    <input type="text" id="input_device_other_brand" class="modal_focus_input form-control" placeholder="Brand name" onfocus="this.value=''" required>
+                                </div>
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-light" onclick="">Next</button>
-                            </div>
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-outline-light" value="Next" onclick="showDeviceNameForm()">
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -135,7 +186,7 @@
                         <div class="modal-content text-light bg-dark">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="modal_device_name_label">
-                                    Name your <span id="header_device_brand"></span> <span id="header_device_type"></span>
+                                    Name your <span id="span_device_brand"></span> <span id="span_device_type"></span>
                                 </h4>
 
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -157,6 +208,7 @@
 
                                     <input type="hidden" name="device_type" id="input_device_type">
                                     <input type="hidden" name="device_brand" id="input_device_brand">
+                                    <input type="hidden" name="device_location" id="input_device_location">
                                 </div>
 
                                 <div class="modal-footer">
@@ -172,7 +224,7 @@
                         <div class="modal-content text-light bg-dark">
                             <div class="modal-header device_info_header">
                                 <h4 class="modal-title" id="modal_device_info_label">
-                                    Device Information
+                                    <span id="device_info_type"></span> Information
                                 </h4>
 
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -182,8 +234,6 @@
 
                             <div class="modal-body">
                                 <h6>
-                                    Type: <span id="device_info_type"></span>
-                                    <br><br>
                                     Brand: <span id="device_info_brand"></span>
                                     <br><br>
                                     Name: <span id="device_info_name"></span>

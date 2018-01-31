@@ -29,14 +29,45 @@ $(document).ready(function() {
     });
 });
 
-function setDeviceBrandModal(type) {
+function setLocationBrandModal(type) {
+    document.getElementById('modal_device_location_label').innerHTML = 'Select '+type+' location';
     document.getElementById('modal_device_brand_label').innerHTML = 'Select '+type+' brand';
-    document.getElementById('header_device_type').innerHTML = type;
+    document.getElementById('span_device_type').innerHTML = type;
     document.getElementById('input_device_type').value = type;
 }
 
+function setDeviceLocationInput(location) {
+    document.getElementById('input_device_location').value = location;
+}
+
+function showDeviceBrandModal() {
+    var input = document.getElementById('input_device_other_location');
+
+    if (input.checkValidity()) {
+        $('#modal_location_name').modal('hide');
+
+        var location = document.getElementById('input_device_other_location').value;
+        setDeviceLocationInput(location);
+
+        $('#modal_device_brand').modal('show');
+    }
+}
+
+function showDeviceNameForm() {
+    var input = document.getElementById('input_device_other_brand');
+
+    if (input.checkValidity()) {
+        $('#modal_brand_name').modal('hide');
+
+        var brand = document.getElementById('input_device_other_brand').value;
+        setDeviceNameForm(brand);
+
+        $('#modal_device_name').modal('show');
+    }
+}
+
 function setDeviceNameForm(brand) {
-    document.getElementById('header_device_brand').innerHTML = brand;
+    document.getElementById('span_device_brand').innerHTML = brand;
     document.getElementById('input_device_brand').value = brand;
 }
 
@@ -54,20 +85,13 @@ function removeDevice(device_type, device_brand, device_name) {
 }
 
 function setDeviceInfo(type, brand, name, location) {
-    if (type === 'device') {
-        document.getElementById('device_info_type').innerHTML = 'Other';
-    }
-    else if (type === 'TV' || type === 'AC') {
-        document.getElementById('device_info_type').innerHTML = type;
-    }
-    else {
+    if (type !== 'TV' && type !== 'AC') {
         type = type.toLowerCase().replace(/\b[a-z]/g, function(letter) {
             return letter.toUpperCase();
         });
-
-        document.getElementById('device_info_type').innerHTML = type;
     }
 
+    document.getElementById('device_info_type').innerHTML = type;
     document.getElementById('device_info_brand').innerHTML = brand;
     document.getElementById('device_info_name').innerHTML = name;
     document.getElementById('device_info_location').innerHTML = location;

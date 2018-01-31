@@ -17,6 +17,7 @@ user_ref = ''
 
 device_types = ['light', 'fan', 'TV', 'AC', 'device']
 device_brands = ['Samsung', 'LG', 'Sony', 'Philips', 'Panasonic', 'Xiaomi', 'Hitachi', 'Fujitsu', 'Sharp', 'Toshiba', 'Dyson', 'Roomba']
+device_locations = ['Bedroom', 'Living room', 'Balcony', 'Dining room', 'Kitchen', 'Toilet', 'Bathroom', 'Attic', 'Basement']
 
 device_dict = {}
 
@@ -55,12 +56,14 @@ def remote_devices():
         if form.validate():
             device_type = request.form['device_type']
             device_brand = request.form['device_brand']
+            device_location = request.form['device_location']
             device_name = form.name.data
 
             user_device_type_ref = user_devices_ref.child(device_type)
 
             user_device_type_ref.update({
                 device_name+'/brand': device_brand,
+                device_name+'/location': device_location,
                 device_name+'/power': 'off'
             })
 
@@ -83,8 +86,9 @@ def remote_devices():
             for device_name, device_settings in devices.items():
                 device_brand = device_settings['brand']
                 device_power = device_settings['power']
+                device_location = device_settings['location']
 
-                device = Device(device_type, device_brand, device_name, 'test_room', device_power)
+                device = Device(device_type, device_brand, device_name, device_location, device_power)
                 device_list.append(device)
 
             device_dict[device_type] = device_list
@@ -93,7 +97,7 @@ def remote_devices():
         if device_type not in device_type_count:
             device_type_count[device_type] = 0
 
-    return render_template('remote_devices.html', deviceform=form, device_types=device_types, device_brands=device_brands, device_dict=device_dict, device_type_count=device_type_count, device_count_range=device_count_range+1)
+    return render_template('remote_devices.html', deviceform=form, device_types=device_types, device_brands=device_brands, device_locations=device_locations, device_dict=device_dict, device_type_count=device_type_count, device_count_range=device_count_range+1)
 
 @app.route('/remote/power', methods=['POST'])
 def remote_power():
