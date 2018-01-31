@@ -43,17 +43,14 @@ body {
 
 /* ### ROOMS MENU ### */
 #rooms_menu {
-    border: 2px solid white;
-    border-radius: 5px;
+    table-layout: fixed;
     background: #202126;
-    height: 8vh;
-    line-height: 7vh;
-    padding: 0 10px 0 10px;
+    line-height: 5vh;
     margin-bottom: 2%;
 }
 
 .button_device_room {
-    margin-left: 0.5%;
+    width: 100%;
 }
 
 /* ### DEVICE MENU ### */
@@ -69,7 +66,7 @@ body {
 
 #device_table {
     table-layout: fixed;
-	height: 60vh;
+	height: 65vh;
     border: 1px solid black;
     background: #202126;
 }

@@ -96,3 +96,24 @@ function setDeviceInfo(type, brand, name, location) {
     document.getElementById('device_info_name').innerHTML = name;
     document.getElementById('device_info_location').innerHTML = location;
 }
+
+function showAllDevices() {
+    var devices = document.getElementsByClassName('device_dropdown');
+
+    for (var i = 0; i < devices.length; i++) {
+        devices[i].style.display = 'block';
+    }
+}
+
+function showDevicesInRoom(data_location) {
+    var devices = document.querySelectorAll('[data-device-location]');
+
+    for (var i = 0; i < devices.length; i++) {
+        if (devices[i].getAttribute('data-device-location') === data_location) {
+            devices[i].style.display = 'block';
+        }
+        else {
+            devices[i].style.display = 'none';
+        }
+    }
+}

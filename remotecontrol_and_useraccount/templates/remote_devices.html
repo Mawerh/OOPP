@@ -9,16 +9,22 @@
 
             <div class="remote_content col-sm">
                 <h4 class="text-light">Rooms</h4>
-                <div id="rooms_menu">
-                    <button type="button" class="button_device_room btn btn-outline-success">Show All</button>
+                <div>
+                    <table id="rooms_menu" class="table table-responsive-sm table-dark">
+                        <tbody>
+                            <tr>
+                                <td><button type="button" class="button_device_room btn btn-outline-success" onclick="showAllDevices()">Show All</button></td>
 
-                    <button type="button" class="button_device_room btn btn-outline-info">test room 1</button>
-                    <button type="button" class="button_device_room btn btn-outline-info">test room 2</button>
-                    <button type="button" class="button_device_room btn btn-outline-info">test room 3</button>
+                                {% for device_location in device_location_list %}
+                                    <td><button type="button" class="button_device_room btn btn-outline-info" onclick="showDevicesInRoom('{{ 'room_'+device_location }}')">{{ device_location }}</button></td>
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <h4 class="text-light">Devices</h4>
-                <table class="table table-bordered table-responsive-sm table-dark" id="device_table">
+                <table id="device_table" class="table table-bordered table-responsive-sm table-dark">
                     <thead>
                         <th scope="col" id="header_light" class="bg-primary"><h1 class="device_type_title">LIGHT</h1> <h1 class="device_type_count">{{ device_type_count['light'] }}</h1></th>
                         <th scope="col" id="header_fan" class="bg-success"><h1 class="device_type_title">FAN</h1> <h1 class="device_type_count">{{ device_type_count['fan'] }}</h1></th>
@@ -33,23 +39,14 @@
                                     <td>
                                         {% for device in device_dict[device_type] %}
                                             {% if device == device_dict[device_type][i] %}
-                                                <label class="switch button_device_power">
-                                                    <input type="checkbox" data-device-switch="{{ device.type+device.name }}" data-device-switch-type="{{ device.type }}" data-device-switch-name="{{ device.name }}">
-                                                    <span class="slider round"></span>
-                                                </label>
-
-                                                <script>
-                                                    var device_switch = $('.button_device_power input[data-device-switch="{{ device.type+device.name }}"]');
-
-                                                    {% if device.power == 'off' %}
-                                                        device_switch.prop("checked", false);
-                                                    {% elif device.power == 'on' %}
-                                                        device_switch.prop("checked", true);
-                                                    {% endif %}
-                                                </script>
-
-                                                <div class="device_dropdown">
+                                                <div class="device_dropdown" data-device-location="{{ 'room_'+device.location }}">
                                                     <button type="button" class="button_device btn btn-outline-info">{{ device.name }}</button>
+
+                                                    <label class="switch button_device_power">
+                                                        <input type="checkbox" data-device-switch="{{ device.type+device.name }}" data-device-switch-type="{{ device.type }}" data-device-switch-name="{{ device.name }}">
+                                                        <span class="slider round"></span>
+                                                    </label>
+
                                                     <div class="device_dropdown_content" align="center">
                                                         <button type="button" class="btn btn-outline-primary device_dropdown_button">
                                                             Remote Interface
@@ -64,6 +61,16 @@
                                                         </button>
                                                     </div>
                                                 </div>
+
+                                                <script>
+                                                    var device_switch = $('.button_device_power input[data-device-switch="{{ device.type+device.name }}"]');
+
+                                                    {% if device.power == 'off' %}
+                                                        device_switch.prop("checked", false);
+                                                    {% elif device.power == 'on' %}
+                                                        device_switch.prop("checked", true);
+                                                    {% endif %}
+                                                </script>
                                             {% endif %}
                                         {% endfor %}
                                     </td>

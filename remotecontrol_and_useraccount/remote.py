@@ -70,6 +70,7 @@ def remote_devices():
     global device_dict
     device_dict = {}
     device_type_count = {}
+    device_location_list = []
     device_count_range = 0
 
     dictionary = user_devices_ref.get()
@@ -91,13 +92,16 @@ def remote_devices():
                 device = Device(device_type, device_brand, device_name, device_location, device_power)
                 device_list.append(device)
 
+                if device_location not in device_location_list:
+                    device_location_list.append(device_location)
+
             device_dict[device_type] = device_list
 
     for device_type in device_types:
         if device_type not in device_type_count:
             device_type_count[device_type] = 0
 
-    return render_template('remote_devices.html', deviceform=form, device_types=device_types, device_brands=device_brands, device_locations=device_locations, device_dict=device_dict, device_type_count=device_type_count, device_count_range=device_count_range+1)
+    return render_template('remote_devices.html', deviceform=form, device_types=device_types, device_brands=device_brands, device_locations=device_locations, device_dict=device_dict, device_type_count=device_type_count, device_count_range=device_count_range+1, device_location_list=device_location_list)
 
 @app.route('/remote/power', methods=['POST'])
 def remote_power():
