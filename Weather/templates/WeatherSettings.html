@@ -39,11 +39,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <h5>In the Morning</h5>
-                        <label class="weather_switch">
-                            <input type="checkbox">
-                            <span class="weather_slider round"></span>
-                        </label>
+                        <h3>Weather</h3>
                         <hr>
                         <h5>When the sky is Mostly Cloudy</h5>
                         <label class="weather_switch">
@@ -57,7 +53,9 @@
                             <span class="weather_slider round"></span>
                         </label>
                         <hr>
-                        <h5>In the Evening</h5>
+                        <h3>Temperature</h3>
+                        <hr>
+                        <h5>When the temperature is 10 - 30 degree celcius</h5>
                         <label class="weather_switch">
                             <input type="checkbox">
                             <span class="weather_slider round"></span>
@@ -69,37 +67,27 @@
                             <span class="weather_slider round"></span>
                         </label>
                         <hr>
-                        <h5>When the temperature is 20 - 30 degree celcius</h5>
+                        <h3>PSI</h3>
+                        <hr>
+                        <h5>When the PSI is 0 - 100 (Moderate)</h5>
                         <label class="weather_switch">
                             <input type="checkbox">
                             <span class="weather_slider round"></span>
                         </label>
                         <hr>
-                        <h5>When the temperature is 10 - 20 degree celcius</h5>
-                        <label class="weather_switch">
-                            <input type="checkbox">
-                            <span class="weather_slider round"></span>
-                        </label>
-                        <hr>
-                        <h5>When the PSI is 300 and above</h5>
-                        <label class="weather_switch">
-                            <input type="checkbox">
-                            <span class="weather_slider round"></span>
-                        </label>
-                        <hr>
-                        <h5>When the PSI is 200 - 300</h5>
+                        <h5>WWhen the PSI is 100 - 200 (Unhealthy)</h5>
                         <label class="weather_switch">
                             <input type="checkbox">
                             <span class="weatherslider round"></span>
                         </label>
                         <hr>
-                        <h5>When the PSI is 100 - 200</h5>
+                        <h5>When the PSI is 200 - 300 (Very Unhealthy)</h5>
                         <label class="weather_switch">
                             <input type="checkbox">
                             <span class="weather_slider round"></span>
                         </label>
                         <hr>
-                        <h5>When the PSI is 0 - 100</h5>
+                        <h5>When the PSI is above 300 (Hazardous)</h5>
                         <label class="weather_switch">
                             <input type="checkbox">
                             <span class="weather_slider round"></span>
@@ -113,7 +101,6 @@
 <!-- .carousel -->
 <!--end bg-carousel-->
   <!-- START THE FEATURETTES -->
-
   <hr>
 <div class="container">
   <!-- Example row of columns -->
@@ -136,6 +123,7 @@
       <h2 class="lead">Current temperature: {{ temp }} degrees.</h2>
         <h2 class="lead">Current Humidity: {{ humid }}.</h2>
     </div>
+
     <div class="col-md-5 col-md-pull-7 text-center">
         <img src="{{ url_for('static', filename='img/temphigh.gif') }}" class="featurette-image img-responsive" height ="250" width="225">
     </div>
@@ -144,7 +132,7 @@
 
   <div class="row">
     <div class="col-md-7">
-      <h2 class="featurette-heading">PSI <span class="text-muted">Checkmate.</span></h2>
+      <h2 class="featurette-heading">PSI <span class="text-muted">Check the PSI to see whether it is fine to go outside.</span></h2>
       <h2 class="lead">Current PSI: {{ psi }}.</h2>
     </div>
     <div class="col-md-5 text-center">
