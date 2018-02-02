@@ -8,6 +8,11 @@ $(document).ready(function() {
         wrapper.find('.device_dropdown_content').slideToggle();
     });
 
+    $('.button_device').blur(function() {
+        var wrapper = $(this).closest('.device_dropdown');
+        wrapper.find('.device_dropdown_content').slideUp();
+    });
+
     $('.button_device_power input').change(function() {
         var device_type = $(this).attr('data-device-switch-type');
         var device_name = $(this).attr('data-device-switch-name');

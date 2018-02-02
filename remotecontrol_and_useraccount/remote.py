@@ -25,6 +25,10 @@ app = Flask(__name__)
 
 app.secret_key = 'oopp2017group4'
 
+@app.before_first_request
+def reset_session():
+    session.pop('email', None)
+
 @app.route('/')
 def index():
     if 'email' in session:
@@ -132,8 +136,8 @@ def device_remove():
 
     return redirect(url_for('remote_devices'))
 
-@app.route('/remote/rooms', methods=['GET', 'POST'])
-def remote_rooms():
+@app.route('/remote/heatmap', methods=['GET', 'POST'])
+def remote_heatmap():
     if 'email' not in session:
         return redirect(url_for('login'))
 
@@ -157,7 +161,7 @@ def remote_rooms():
                 'position_y': 0,
             })
 
-    return render_template('remote_rooms.html', roomform=form)
+    return render_template('remote_heatmap.html', roomform=form)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
