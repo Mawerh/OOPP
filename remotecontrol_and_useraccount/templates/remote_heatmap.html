@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    <title>Remote Rooms</title>
+    <title>Remote Heatmap</title>
 
     <div class="container-fluid">
         <div class="row">
@@ -24,7 +24,7 @@
                                 </button>
                             </div>
 
-                            <form method="POST" action="/remote/rooms">
+                            <form method="POST" action="/remote/heatmap">
                                 <div class="modal-body">
                                     {{ roomform.hidden_tag() }}
 
@@ -47,18 +47,12 @@
                     </div>
                 </div>
 
-                <div class="testcol" id="floorplan_boundary">
-                    <div class="room_test" id="test_resizable">
-                        <span class="test_room_name">Test Room 1</span>
-                    </div>
-
-                    <div class="room_test">
-                        <span class="test_room_name">Test Room 2</span>
-                    </div>
-
-                    <div class="room_test">
-                        <span class="test_room_name">Test Room 3</span>
-                    </div>
+                <div id="floorplan_boundary">
+                    {% for device_location in device_location_list %}
+                        <div class="floorplan_room">
+                            <span class="floorplan_room_name">{{ device_location }}</span>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
 
@@ -67,12 +61,12 @@
 
     <script>
         $(document).ready(function() {
-            $('.room_test').draggable({
+            $('.floorplan_room').draggable({
                 containment: '#floorplan_boundary',
                 snap: true
             });
 
-            $('.room_test').resizable({
+            $('.floorplan_room').resizable({
                 containment: '#floorplan_boundary'
             });
         });
