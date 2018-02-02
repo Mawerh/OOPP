@@ -14,7 +14,6 @@ app = Flask(__name__)
 app.secretkey = 'oopp2017group4'
 
 
-
 @app.route("/WeatherHome")
 def weatherHome():
     return render_template("WeatherHome.html")
@@ -33,21 +32,21 @@ def weathntempsettings():
         weather = json_object['weather'][0]["main"]
         weather_descrip = json_object['weather'][0]["description"]
         temp_c = int(temp_k - 273.15)
+        if weather == "Rain":
+            toaster = ToastNotifier()
+            toaster.show_toast(
+                "Rain Warning!!!",
+                "Closing your windows...",
+                duration=5)
+            toaster.show_toast(
+                "Closed Windows",
+                "Your windows are now closed",
+                icon_path=None,
+                duration=5,
+                threaded=True
+            )
         return render_template('WeatherSettings.html', temp=temp_c, humid=humidity, windspd=wind_speed, weath=weather, descrip=weather_descrip)
 
-def notifier():
-    toaster = ToastNotifier()
-    toaster.show_toast(
-            "Rain Warning!!!",
-            "It is going to rain soon. Closing your windows",
-            duration=10)
-    toaster.show_toast(
-            "Closed Windows",
-            "Your windows are now closed",
-            icon_path=None,
-            duration=5,
-            threaded=True
-        )
 
 if __name__ == '__main__':
     app.run(debug=True)
