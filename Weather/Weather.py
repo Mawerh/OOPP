@@ -1,13 +1,19 @@
 from flask import Flask, render_template, request
+from firebase_admin import credentials, db
 from win10toast import ToastNotifier
 import requests
-import urllib
-from firebase import firebase
+import firebase_admin
 
-firebase = firebase.FirebaseApplication('https://weather-9587a.firebaseio.com/', authentication ='AIzaSyCwYgi9FEXOS354qs3Zbyd-3PirZsjFHQU')
-
+cred = credentials.Certificate("cred/ooppgroup4-firebase-adminsdk-vr92m-06ddf6875d.json")
+firebase_admin.initialize_app(cred, {
+    'databaseURL': 'https://ooppgroup4.firebaseio.com/'
+})
 
 app = Flask(__name__)
+
+app.secretkey = 'oopp2017group4'
+
+
 
 @app.route("/WeatherHome")
 def weatherHome():
@@ -29,21 +35,19 @@ def weathntempsettings():
         temp_c = int(temp_k - 273.15)
         return render_template('WeatherSettings.html', temp=temp_c, humid=humidity, windspd=wind_speed, weath=weather, descrip=weather_descrip)
 
-def popupmsettings():
-        toaster = ToastNotifier()
-        toaster.show_toast(
+def notifier():
+    toaster = ToastNotifier()
+    toaster.show_toast(
             "Rain Warning!!!",
             "It is going to rain soon. Closing your windows",
             duration=10)
-        toaster.show_toast(
-            "Example two",
-            "This notification is in it's own thread!",
+    toaster.show_toast(
+            "Closed Windows",
+            "Your windows are now closed",
             icon_path=None,
             duration=5,
             threaded=True
         )
-        # Wait for threaded notification to finish
-        while toaster.notification_active(): time.sleep(0.1)
 
 if __name__ == '__main__':
     app.run(debug=True)
