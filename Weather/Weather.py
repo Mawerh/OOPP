@@ -29,14 +29,6 @@ def weathntempsettings():
         temp_c = int(temp_k - 273.15)
         return render_template('WeatherSettings.html', temp=temp_c, humid=humidity, windspd=wind_speed, weath=weather, descrip=weather_descrip)
 
-def mainpsisettings():
-        file = urllib.request('http://api.nea.gov.sg/api/WebAPI/?dataset=psi_update&keyref=781CF461BB6606AD48001FDD2657FAF020F860C60A7F1824')
-        reading = file.getElementsByTagName('reading')
-        reading = [items.attributes['value'].value for items in reading if items.attributes['type'].value == "NPSI"]
-        for items in reading:
-            if items.attributes['type'].value == "NPSI":
-                return render_template('WeatherSettings.html', items.attribute['value'].value)
-
 def popupmsettings():
         toaster = ToastNotifier()
         toaster.show_toast(
