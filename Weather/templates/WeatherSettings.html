@@ -133,14 +133,30 @@
   <div class="row">
     <div class="col-md-7">
       <h2 class="featurette-heading">PSI <span class="text-muted">Check the PSI to see whether it is fine to go outside.</span></h2>
-      <h2 class="lead">Current PSI: {{ psi }}.</h2>
-    </div>
-    <div class="col-md-5 text-center">
-      <img src="{{ url_for('static', filename='img/haze.gif') }}" class="featurette-image img-responsive" height="300" width="400">
     </div>
   </div>
-  <!-- /END THE FEATURETTES -->
+    <div  id='map'  style='height:380px;'  />
+        <script  src="https://maps.googleapis.com/maps/api/js"></script>
+
+        <script>
+            var  map  =  new  google.maps.Map(document.getElementById('map'),  {
+                  center:  new  google.maps.LatLng(1.3521, 103.8198),
+                  mapTypeId:  google.maps.MapTypeId.ROADMAP,
+                  zoom:  11
+              });
+
+                              var  t  =  new  Date().getTime();
+            var  waqiMapOverlay  =  new  google.maps.ImageMapType({
+                  getTileUrl:  function(coord,  zoom)  {
+                            return  'https://tiles.waqi.info/tiles/usepa-aqi/'  +  zoom  +  "/"  +  coord.x  +  "/"  +  coord.y  +  ".png?token=f29516843abd4e83617165a3f3609ae77b64ac11";
+                  },
+                  name:  "Air  Quality",
+        });
+
+            map.overlayMapTypes.insertAt(0,waqiMapOverlay);
+</script>
 </div>
+  <!-- /END THE FEATURETTES -->
 
 <hr>
 
