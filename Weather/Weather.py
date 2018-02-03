@@ -45,7 +45,21 @@ def weathntempsettings():
                 duration=5,
                 threaded=True
             )
+        elif weather == "Clouds":
+            toaster = ToastNotifier()
+            toaster.show_toast(
+                "Clear weather",
+                "Opening your windows...",
+                duration=5)
+            toaster.show_toast(
+                "Opened Windows",
+                "Your windows are now open.",
+                icon_path=None,
+                duration=5,
+                threaded=True
+                )
         return render_template('WeatherSettings.html', temp=temp_c, humid=humidity, windspd=wind_speed, weath=weather, descrip=weather_descrip)
+
 
 
 if __name__ == '__main__':

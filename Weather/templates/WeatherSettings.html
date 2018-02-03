@@ -109,22 +109,139 @@
            <h2 class="lead">Current Weather Description: {{descrip}}. </h2>
            <h2 class="lead">Current Wind Speed: {{ windspd }} knots .</h2>
        </div>
+        <!-- Clear sky gifs -->
        {% if descrip == "clear sky" %}
            <div class="col-md-5 text-center">
                <img src="{{ url_for('static', filename='img/clearsky.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
            </div>
+
+           <!-- Drizzle gifs -->
        {% elif descrip == "drizzle" %}
            <div class="col-md-5 text-center">
                <img src="{{ url_for('static', filename='img/drizzle.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
            </div>
+       {% elif descrip == "light intensity drizzle" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/drizzle.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "heavy intensity drizzle" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/drizzle.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "light intensity drizzle rain" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/drizzle.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "drizzle rain" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/drizzle.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "heavy intensity drizzle rain" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/drizzle.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "shower rain and drizzle" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/drizzle.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "heavy shower rain and drizzle" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/drizzle.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "shower drizzle" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/drizzle.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+
+           <!-- Rain gifs -->
        {% elif descrip == "rain" %}
            <div class="col-md-5 text-center">
                <img src="{{ url_for('static', filename='img/rain.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
            </div>
+       {% elif descrip == "light intensity shower rain" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/rain.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "moderate rain" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/rain.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == " light rain" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/rain.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "heavy intensity rain" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/rain.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "very heavy rain" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/rain.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "extreme rain" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/rain.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "freezing rain" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/rain.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "heavy intensity shower rain" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/rain.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "shower rain" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/rain.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "ragged shower rain" %}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/rain.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+
+           <!-- Thunderstorm gifs -->
        {% elif descrip == "thunderstorm"%}
            <div class="col-md-5 text-center">
                <img src="{{ url_for('static', filename='img/thunderstorm.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
            </div>
+       {% elif descrip == "thunderstorm with light rain"%}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/thunderstorm.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "thunderstorm with rain"%}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/thunderstorm.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "thunderstorm with heavy rain"%}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/thunderstorm.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "light thunderstorm"%}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/thunderstorm.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "heavy thunderstorm"%}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/thunderstorm.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "ragged thunderstorm"%}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/thunderstorm.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "thunderstorm with light drizzle"%}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/thunderstorm.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "thunderstorm with drizzle"%}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/thunderstorm.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+       {% elif descrip == "thunderstorm with heavy drizzle"%}
+           <div class="col-md-5 text-center">
+               <img src="{{ url_for('static', filename='img/thunderstorm.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
+           </div>
+
+           <!-- Clouds gif-->
        {% elif descrip == "few clouds" %}
            <div class="col-md-5 text-center">
                <img src="{{ url_for('static', filename='img/scatteredclouds.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
@@ -140,14 +257,6 @@
        {% elif descrip == "overcast clouds" %}
            <div class="col-md-5 text-center">
                <img src="{{ url_for('static', filename='img/scatteredclouds.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
-           </div>
-       {% elif descrip == "light intensity shower rain" %}
-           <div class="col-md-5 text-center">
-               <img src="{{ url_for('static', filename='img/rain.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
-           </div>
-       {% elif descrip == "moderate rain" %}
-           <div class="col-md-5 text-center">
-               <img src="{{ url_for('static', filename='img/rain.gif') }}" class="featurette-image img-responsive" height ="300" width="300">
            </div>
        {% endif %}
 
