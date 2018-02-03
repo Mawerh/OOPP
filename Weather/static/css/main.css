@@ -1,0 +1,117 @@
+.container, .container-fluid {
+	margin-top: 2%;
+}
+
+footer {
+    background: #101822; /* #1B1B1B */
+    position: absolute;
+    bottom: -10%;
+    left: 0;
+    right: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* ### LOG IN/SIGN UP FORM */
+.error-message {
+	color: red;
+}
+
+/* Log in/sign up form */
+.form-content .form-group {
+    margin-bottom: 20px;
+}
+
+.form-content label {
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.form-content .form-group input {
+    border: none;
+    border-bottom: 2px solid #4285f4;
+    background-color: transparent;
+    color: white;
+    font-size: 18px;
+    padding: 5px 0;
+    width: 100%;
+}
+
+.form-content input:focus {
+    outline: 0;
+}
+
+.form-content .error-message {
+    margin: 10px 0;
+}
+
+.form-content .error-message + input {
+    border-bottom: 2px solid crimson;
+}
+
+.form-content h2 {
+    font-weight: 300;
+    padding-bottom: 10px;
+    letter-spacing: -1px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.background {
+    position: fixed;
+    z-index: -1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+}
+
+.form-content {
+    margin: 10% auto;
+    width: 30%;
+}
+
+.form-content .btn {
+    width: 100%;
+    margin-top: 30px;
+}
+
+/* ### LOG IN/LOG OUT/SIGN UP BUTTONS ### */
+#button_login_out {
+	background: #00cc00;
+	color: white;
+	border-radius: 5px;
+    width: 7em;
+    padding: 10px;
+    margin: 5px 15px 5px 0;
+}
+
+#button_login_out:hover {
+	background: #00b300;
+}
+
+#button_signup {
+	background: #3399ff;
+	color: white;
+	border-radius: 5px;
+    width: 7em;
+    padding: 10px;
+    margin: 5px 0px 5px 0;
+}
+
+#button_signup:hover {
+	background: #1a8cff;
+}
+
+/* NAVBAR */
+.navbar {
+    background: #1B2838;
+}
+
+.navbar-brand {
+    font-size: 150%;
+}
