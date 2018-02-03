@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/weather_main.css') }}">
 
 </head>
-<body>
+<body>-->
+{% extends 'layout.html' %}
+
+{% block body %}
 	<!-- Carousel -->
 <div id="bg-fade-carousel" class="carousel slide carousel-fade" data-ride="carousel">
 <!-- Wrapper for slides -->
@@ -63,8 +66,8 @@
     </div>
 <hr>
 <!-- FOOTER -->
+{% endblock %}
 
 
-
-</body>
-</html>
+<!--</body>
+</html>-->

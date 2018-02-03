@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -13,8 +13,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/weather_slider.css') }}">
 
 </head>
-<body>
+<body>-->
+{% extends 'layout.html' %}
 
+{% block body %}
 	<!-- Carousel -->
 <div id="bg-fade-carousel" class="carousel slide carousel-fade" data-ride="carousel">
 <!-- Wrapper for slides -->
@@ -40,56 +42,54 @@
                         <h3>Weather</h3>
                         <hr>
                         <h5>When the sky is Mostly Cloudy</h5>
+                        <div align=center>
                         <label class="weather_switch">
                             <input type="checkbox">
                             <span class="weather_slider round"></span>
                         </label>
+                        </div>
                         <hr>
                         <h5>When the sky is Mostly Sunny</h5>
+                        <div align=center>
                         <label class="weather_switch">
                             <input type="checkbox">
                             <span class="weather_slider round"></span>
                         </label>
-                        <hr>
-                        <h3>Temperature</h3>
-                        <hr>
-                        <h5>When the temperature is 10 - 30 degree celcius</h5>
-                        <label class="weather_switch">
-                            <input type="checkbox">
-                            <span class="weather_slider round"></span>
-                        </label>
-                        <hr>
-                        <h5>When the temperature is 30 - 50 degree celcius</h5>
-                        <label class="weather_switch">
-                            <input type="checkbox">
-                            <span class="weather_slider round"></span>
-                        </label>
+                        </div>
                         <hr>
                         <h3>PSI</h3>
                         <hr>
                         <h5>When the PSI is 0 - 100 (Moderate)</h5>
+                        <div align=center>
+                        <label class="weather_switch">
+                            <input type="checkbox">
+                            <span class="weather_slider round"></span>
+                        </label>
+                        </div>
+                        <hr>
+                        <h5>When the PSI is 100 - 200(Unhealthy)</h5>
+                        <div align=center>
                         <label class="weather_switch">
                             <input type="checkbox">
                             <span class="weather_slider round"></span>
                         </label>
                         <hr>
-                        <h5>WWhen the PSI is 100 - 200 (Unhealthy)</h5>
-                        <label class="weather_switch">
-                            <input type="checkbox">
-                            <span class="weatherslider round"></span>
-                        </label>
-                        <hr>
+                        </div>
                         <h5>When the PSI is 200 - 300 (Very Unhealthy)</h5>
+                        <div align=center>
                         <label class="weather_switch">
                             <input type="checkbox">
                             <span class="weather_slider round"></span>
                         </label>
+                        </div>
                         <hr>
                         <h5>When the PSI is above 300 (Hazardous)</h5>
+                        <div align=center>
                         <label class="weather_switch">
                             <input type="checkbox">
                             <span class="weather_slider round"></span>
                         </label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -308,8 +308,8 @@
 <hr>
 
 <!-- FOOTER -->
+{% endblock %}
 
 
-
-</body>
-</html>
+<!--</body>
+</html>-->
