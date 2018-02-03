@@ -15,15 +15,9 @@ app = Flask(__name__)
 
 app.secret_key = 'oopp2017group4'
 
-
-@app.route("/WeatherHome")
-def weatherHome():
-    # Check if user is NOT logged in
-    if 'email' in session:
-        return redirect(url_for('weatherStart'))
-    ###########################
-
-    return render_template("WeatherHome.html")
+ref = db.reference()
+users_ref = ref.child('users')
+user_ref = ''
 
 @app.route("/WeatherStart")
 def weatherStart():
@@ -67,13 +61,26 @@ def weathntempsettings():
                 duration=10,
                 threaded=True
             )
-        return render_template('WeatherSettings.html', temp=temp_c, humid=humidity, windspd=wind_speed, weath=weather, descrip=weather_descrip)
+
+        user_weather_ref = user_ref.child('weather')
+        dictionary = user_weather_ref.get()
+
+        return render_template('WeatherSettings.html', temp=temp_c, humid=humidity, windspd=wind_speed, weath=weather, descrip=weather_descrip, dictionary=dictionary)
+
+@app.route('/WeatherSettings/setting', methods=['POST'])
+def changewindowsettings():
+    setting = request.form['setting']
+    switch = request.form['switch']
+
+    user_weather_ref = user_ref.child('weather')
+
+    user_weather_ref.update({
+        setting: switch
+    })
+
+    return 'nothing'
 
 #Signup, Login, and Logout
-
-ref = db.reference()
-users_ref = ref.child('users')
-user_ref = ''
 
 @app.before_first_request
 def reset_session():

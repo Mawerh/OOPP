@@ -44,7 +44,7 @@
                         <h5>When the sky is Mostly Cloudy</h5>
                         <div align=center>
                         <label class="weather_switch">
-                            <input type="checkbox">
+                            <input type="checkbox" data-weather-setting="When the sky is Mostly Cloudy" data-weather-switch="{{ dictionary['When the sky is Mostly Cloudy'] }}">
                             <span class="weather_slider round"></span>
                         </label>
                         </div>
@@ -52,7 +52,7 @@
                         <h5>When the sky is Mostly Sunny</h5>
                         <div align=center>
                         <label class="weather_switch">
-                            <input type="checkbox">
+                            <input type="checkbox" data-weather-setting="When the sky is Mostly Sunny" data-weather-switch="{{ dictionary['When the sky is Mostly Sunny'] }}">
                             <span class="weather_slider round"></span>
                         </label>
                         </div>
@@ -62,7 +62,7 @@
                         <h5>When the PSI is 0 - 100 (Moderate)</h5>
                         <div align=center>
                         <label class="weather_switch">
-                            <input type="checkbox">
+                            <input type="checkbox" data-weather-setting="When the PSI is 0 - 100 (Moderate)" data-weather-switch="{{ dictionary['When the PSI is 0 - 100 (Moderate)'] }}">
                             <span class="weather_slider round"></span>
                         </label>
                         </div>
@@ -70,7 +70,7 @@
                         <h5>When the PSI is 100 - 200(Unhealthy)</h5>
                         <div align=center>
                         <label class="weather_switch">
-                            <input type="checkbox">
+                            <input type="checkbox" data-weather-setting="When the PSI is 100 - 200 (Unhealthy)" data-weather-switch="{{ dictionary['When the PSI is 100 - 200 (Unhealthy)'] }}">
                             <span class="weather_slider round"></span>
                         </label>
                         <hr>
@@ -78,7 +78,7 @@
                         <h5>When the PSI is 200 - 300 (Very Unhealthy)</h5>
                         <div align=center>
                         <label class="weather_switch">
-                            <input type="checkbox">
+                            <input type="checkbox" data-weather-setting="When the PSI is 200 - 300 (Very Unhealthy)" data-weather-switch="{{ dictionary['When the PSI is 200 - 300 (Very Unhealthy)'] }}">
                             <span class="weather_slider round"></span>
                         </label>
                         </div>
@@ -86,7 +86,7 @@
                         <h5>When the PSI is above 300 (Hazardous)</h5>
                         <div align=center>
                         <label class="weather_switch">
-                            <input type="checkbox">
+                            <input type="checkbox" data-weather-setting="When the PSI is above 300 (Hazardous)" data-weather-switch="{{ dictionary['When the PSI is above 300 (Hazardous)'] }}">
                             <span class="weather_slider round"></span>
                         </label>
                         </div>
@@ -301,6 +301,23 @@
         });
 
             map.overlayMapTypes.insertAt(0,waqiMapOverlay);
+</script>
+
+<script>
+    $(document).ready(function() {
+        var input = $('.weather_switch input');
+
+        for (var i = 0; i < input.length; i++) {
+            var weather_switch = $(input[i]).attr('data-weather-switch');
+
+            if (weather_switch === 'off') {
+                $(input[i]).prop("checked", false);
+            }
+            else if (weather_switch === 'on') {
+                $(input[i]).prop("checked", true);
+            }
+        }
+    });
 </script>
 </div>
   <!-- /END THE FEATURETTES -->

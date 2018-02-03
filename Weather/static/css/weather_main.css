@@ -66,7 +66,7 @@ input:checked + .weather_slider:before {
 	background-position: center center;
 }
 .slide1 {
-	background-image: url(http://www.vancitybuzz.com/wp-content/uploads/2015/11/vancouver-sunrise-984x500.jpg);
+	background-image: url(backgroundimage.jpg);
 }
 
 .carousel.carousel-fade .active.item {
