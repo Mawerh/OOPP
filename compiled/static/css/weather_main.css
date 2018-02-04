@@ -1,10 +1,72 @@
+/* Styles for WeatherSettings */
+
+/* The switch - the box around the slider */
+.weather_switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.weather_switch input {display:none;}
+
+/* The slider */
+.weather_slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.weather_slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .weather_slider {
+  background-color: #2196F3;
+}
+
+input:focus + .weather_slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .weather_slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.weather_slider.round {
+  border-radius: 34px;
+}
+
+.weather_slider.round:before {
+  border-radius: 50%;
+}
+
+/*Style for background jumbotron */
 .slide1 {
 	min-height: 560px; /* Must have a height or min-height set due to use of background images */
 	background-size: cover;
 	background-position: center center;
 }
 .slide1 {
-	background-image: url(http://www.vancitybuzz.com/wp-content/uploads/2015/11/vancouver-sunrise-984x500.jpg);
+	background-image: url('../img/backgroundimage.jpg');
 }
 
 .carousel.carousel-fade .active.item {
@@ -13,7 +75,7 @@
 
 /* Carousel Overlay */
 .carousel-overlay {
-    position: absolute;
+	position: absolute;
 	bottom: 100px;
 	right: 0;
 	left: 0;
@@ -21,7 +83,7 @@
 
 /****************************/
 /*                          */
-/*Styles below just for Demo*/
+/*Styles for carousel overlay*/
 /*                          */
 /****************************/
 

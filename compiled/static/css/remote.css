@@ -1,25 +1,36 @@
-#button_login {
-	background: #00cc00;
-	color: white;
-	border-radius: 5px;
-	margin-right: 15px;
+body {
+    background: #17181C;
 }
 
-#button_login:hover {
-	background: #00b300;
+.remote_nav {
+	float: left;
 }
 
-#button_signup {
-	background: #3399ff;
-	color: white;
-	border-radius: 5px;
+.remote_content {
+    left: -3%;
 }
 
-#button_signup:hover {
-	background: #1a8cff;
+/* ### ROOMS MENU ### */
+#rooms_menu {
+    background: #202126;
+    line-height: 5vh;
 }
 
-#button_selection a {
+#rooms_menu_overflow {
+    overflow-x: auto;
+    margin-bottom: 2%;
+}
+
+#room_show_all {
+    width: 1%;
+}
+
+#rooms_menu td:last-child {
+    width: 100%;
+}
+
+/* ### DEVICE MENU ### */
+#remote_selection a {
 	width: 8em;
 	height: 15vh;
 	line-height: 13vh;
@@ -31,7 +42,9 @@
 
 #device_table {
     table-layout: fixed;
-	height: 82vh;
+	height: 65vh;
+    border: 1px solid black;
+    background: #202126;
 }
 
 #device_table td {
@@ -43,24 +56,26 @@
     height: 100%;
 }
 
-.device_menu_header {
-	height: 5em;
-}
-
-.button_device {
+.button_device, .button_add_device {
     width: 70%;
 }
 
 .button_device_power {
 	float: right;
+    margin-top: 5px;
 }
 
-#left {
-	float: left;
+/* Add device modal boxes */
+.device_info_header {
+    border-bottom: 1px solid #868E96;
 }
 
-#middle {
-    left: -3%;
+.modal-header:not(.device_info_header) {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
 }
 
 /* Toggle checkbox */
@@ -120,21 +135,41 @@ input:checked + .slider:before {
 /* Remote device dropdown menu */
 .device_dropdown_content {
     display: none;
-    background-color: #37474F;
+    background-color: #26272C;
     width: 70%;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 10px 0 5px 0;
 }
 
-#button_device_info {
-    margin-left: 6px;
+.device_dropdown_button {
+    width: 90%;
+    margin: 5px 0 5px 0;
 }
 
-#button_device_remove {
-    margin-right: 6px;
+.device_type_title {
+    float: left;
 }
 
-#button_device_interface {
-    margin-top: 5px;
+.device_type_count {
+    float: right;
+}
+
+/* ### REMOTE ROOMS PAGE ### */
+
+#floorplan_boundary {
+    border: 2px solid white;
+    border-radius: 15px;
+    background: #202126;
+    width: 100%;
+    height: 80vh;
+}
+
+.floorplan_room {
+    border: 1px solid black;
+    width: 10%;
+    height: 20%;
+    text-align: center;
+    background: lightgrey;
+    position: absolute;
 }

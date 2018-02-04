@@ -1,28 +1,30 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/logo_smarthome.png') }}" width="35" height="35" class="d-inline-block align-top" alt="Logo"> VISION</a>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/logo_smarthome.png') }}" width="40" class="d-inline-block align-top" alt=""> VISION</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link {% if request.path == '/voice' %}active{% endif %}" href="{{ url_for('page') }}">Voice Assistant</a>
+       <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('index') }}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {% if request.path == '/remote' %}active{% endif %}" href="{{ url_for('remote_devices') }}">Remote Control</a>
+        <a class="nav-link" href="{{ url_for('remote_devices') }}">Remote</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {% if request.path == '/WeatherStart' %}active{% endif %}" href="{{ url_for('weatherStart') }}">Weather & Info</a>
+        <a class="nav-link" href="{{ url_for('voice_page') }}">Voice Assistant</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {% if request.path == '/security' %}active{% endif %}" href="#">Security</a>
+        <a class="nav-link" href="{{ url_for('weatherStart') }}">Weather Stats</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a class="nav-link" id="button_login" href="{{ url_for('login') }}"><i class="material-icons d-inline-block align-top">exit_to_app</i> Log in</a>
+            <!--<button type="button" class="nav-link btn" id="button_login_out" data-toggle="modal" data-target="#modal_loginform"><i class="material-icons d-inline-block align-top">exit_to_app</i> Log in</button>-->
+            <a class="nav-link" id="button_login_out" href="{{ url_for('login') }}"><i class="material-icons d-inline-block align-top">exit_to_app</i> Log in</a>
         </li>
         <li class="nav-item">
+            <!--<button type="button" class="nav-link btn" id="button_signup" data-toggle="modal" data-target="#modal_signupform"><i class="material-icons d-inline-block align-top">account_box</i> Sign Up</button>-->
             <a class="nav-link" id="button_signup" href="{{ url_for('signup') }}"><i class="material-icons d-inline-block align-top">account_box</i> Sign Up</a>
         </li>
     </ul>

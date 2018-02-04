@@ -17,3 +17,7 @@ class LoginForm(FlaskForm):
 class DeviceForm(FlaskForm):
     name = StringField(validators=[DataRequired('Please enter a name.')])
     submit = SubmitField('Add')
+
+class RoomForm(FlaskForm):
+    name = StringField(validators=[DataRequired('Please enter a name.')])
+    submit = SubmitField('Add')
