@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <title>Log in</title>
+
+    <img src="{{ url_for('static', filename='img/login_signup_bg.jpg') }}" class="background">
+
+    <main class="container">
+        <div class="form-content">
+            <h2>Log in</h2>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="error-message">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="/login">
+                {{ loginform.hidden_tag() }}
+
+                <div class="form-group">
+                    {{ loginform.email.label }}
+
+                    {% if loginform.email.errors %}
+                        {% for error in loginform.email.errors %}
+                            <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+
+                    {{ loginform.email }}
+                </div>
+
+                <div class="form-group">
+                    {{ loginform.password.label }}
+
+                    {% if loginform.password.errors %}
+                        {% for error in loginform.password.errors %}
+                            <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+
+                    {{ loginform.password }}
+                </div>
+
+                {{ loginform.submit(class='btn btn-primary') }}
+            </form>
+        </div>
+    </main>
+{% endblock %}
