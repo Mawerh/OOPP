@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <link href="{{ url_for('static', filename='css/landing-page.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/simple-line-icons.css') }}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <header class="masthead text-white text-center">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <h1 class="mb-5" style="font-size: 100px">VISION</h1>
+              <h1>Smart Home App</h1>
+              <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg mt-5">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="features-icons bg-light text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+              <div class="features-icons-icon d-flex">
+                <i class="icon-screen-desktop m-auto text-primary"></i>
+              </div>
+              <h3>Remote Control</h3>
+              <p class="lead mb-0">Turn on and off all your Smart Home devices from a single screen.</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+              <div class="features-icons-icon d-flex">
+                <i class="icon-layers m-auto text-primary"></i>
+              </div>
+              <h3>Voice Assistant</h3>
+              <p class="lead mb-0">Command the web and control your home with just your voice.</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+              <div class="features-icons-icon d-flex">
+                <i class="icon-check m-auto text-primary"></i>
+              </div>
+              <h3>Weather Automation</h3>
+              <p class="lead mb-0">Get the latest weather information and automate your windows.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase bg-dark text-light">
+      <div class="container-fluid p-0">
+        <div class="row no-gutters">
+
+          <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('../static/img/bg-showcase-1.jpg');"></div>
+          <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+            <h2>Control your Smart Devices</h2>
+            <p class="lead mb-0">Easily turn on and off all your Smart Home devices from a single page, see which room the devices are located at, and view the power consumption for the past few days.</p>
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-lg-6 text-white showcase-img" style="background-image: url('../static/img/bg-showcase-2.jpg');"></div>
+          <div class="col-lg-6 my-auto showcase-text">
+            <h2>Your very own Robotic Butler</h2>
+            <p class="lead mb-0">Use the voice assistant to control devices, lock and unlock doors, get the weather update, browse the web, search for videos, shop for things and more.</p>
+          </div>
+        </div>
+        <div class="row no-gutters">
+          <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('../static/img/bg-showcase-3.jpg');"></div>
+          <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+            <h2>Automate your windows according to the weather</h2>
+            <p class="lead mb-0">Set your windows to open and close automatically depending on whether it is sunny or raining, and also according to the temperature and PSI.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials text-center bg-light">
+      <div class="container">
+        <h2 class="mb-5">What is a Smart Home?</h2>
+        <div class="row">
+            <iframe style="margin-left: 90px;" width="1000" height="500" src="https://www.youtube.com/embed/wedwOQuMQbM?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+{% endblock %}

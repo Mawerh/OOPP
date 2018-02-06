@@ -1,0 +1,18 @@
+Turning on aircon hello hello my check
+Turning on aircon
+The weather today is Mostly Cloudy, with a high of 28 degrees and a low of 23 degrees.
+Turning on aircon
+Carrying out task
+Carrying out task
+Carrying out task
+Carrying out task
+Turning on aircon
+Turning on TV
+Turning off ['icon']
+Turning off ['aircon']
+The weather today is Mostly Cloudy, with a high of 28 degrees and a low of 23 degrees.
+The weather today is Mostly Cloudy, with a high of 28 degrees and a low of 23 degrees.
+It is 14:18:37
+It is Tue 06 Feb 2018
+Ok, let's see what your friends are up to.
+Unlocking the door
